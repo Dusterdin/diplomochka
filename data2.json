@@ -1,0 +1,301 @@
+{
+  "devkit": {
+    "groups": {
+      "1": [
+        {
+          "name": "Intel Agilex 5E SoC FPGA",
+          "part": "A5EA007BB23BE6S",
+          "status": "have",
+          "desc": "Головний чіп: ARM Cortex-A55 HPS + 69K LE програмована логіка. Пакет B32A, 32×32мм.",
+          "spec": "Звірено: iWave/Critical Link обидва на B32A пакеті",
+          "price": 94,
+          "buy": "https://www.digikey.be/en/products/detail/altera/A5EA007BB23BE6S/28118578",
+          "ds": "https://docs.altera.com/r/docs/762191/current/agilextm-5-fpgas-and-socs-device-overview/key-features-and-innovations-in-agilextm-5-fpgas-and-socs"
+        }
+      ],
+      "2": [
+        {
+          "name": "DA9062 PMIC + RTC",
+          "part": "DA9062-56AM1",
+          "status": "have",
+          "desc": "4×Buck + 4×LDO + RTC. Periphery/IO живлення — Buck1+2 dual-phase → VCCRCORE 1.2V (НЕ справжній core).",
+          "spec": "Підтверджено: той самий чіп в iWave SOM, I2C 0x58 (звір з ревізією 0x48)",
+          "price": 4.21,
+          "buy": "https://www.digikey.com/en/products/detail/renesas-electronics-corporation/DA9062-56AM1/18717046",
+          "ds": "https://www.alldatasheet.com/datasheet-pdf/pdf/1588721/RENESAS/DA9062.html"
+        },
+        {
+          "name": "TPS62130 — 3.3V Buck 3A (заміна TPS62177)",
+          "part": "TPS62130RGTR",
+          "status": "need",
+          "desc": "Чистий стабільний 3.3V для USB-C логіки, JTAG level-shifter, clock-генератора, FT2232H. Замінює занижений 500mA варіант — pin-to-pin сумісний.",
+          "spec": "3A, fixed output, запас струму для High-Speed USB + QSPI активність",
+          "price": 1.9,
+          "buy": "https://www.digikey.com/en/products/detail/texas-instruments/TPS62130RGTR/2833429",
+          "ds": ""
+        },
+        {
+          "name": "TPS546D24A — SmartVID Core Regulator",
+          "part": "TPS546D24ARVFR",
+          "status": "need",
+          "desc": "PMBus-сумісний buck для справжнього core (VCC/VCCP, 0.70-0.90V). SDM керує напругою напряму через PMBus команди — звичайний adjustable buck це не вміє.",
+          "spec": "До 20A, PMBus/I2C, feedback резистори 1% точність",
+          "price": 5.72,
+          "buy": "https://www.digikey.com/en/products/detail/texas-instruments/TPS546D24ARVFR/5039745",
+          "ds": ""
+        },
+        {
+          "name": "CR2032 Coin Cell Holder",
+          "part": "Keystone 3034TR",
+          "status": "need",
+          "desc": "RTC backup напруга для VCCBAT піна DA9062. Без неї треба тримати пін на землі (втрата RTC при вимкненні).",
+          "spec": "3V, SMD тримач",
+          "price": 0.49,
+          "buy": "https://www.digikey.com/en/products/detail/keystone-electronics/3034TR/4499408?s=N4IgTCBcDaINIFMCeBnALgewHYIAQGYAGfAFgBUAlEAXQF8g",
+          "ds": ""
+        },
+        {
+          "name": "32.768kHz Crystal для DA9062 RTC",
+          "part": "ABS07-32.768KHZ-T",
+          "status": "need",
+          "desc": "Без цього кварцу вбудований RTC-календар DA9062 не цокатиме навіть з підключеним CR2032.",
+          "spec": "12.5pF load capacitance, типовий для PMIC RTC",
+          "price": 0.61,
+          "buy": "https://www.digikey.com/en/products/detail/abracon-llc/ABS07-32-768KHZ-T/1236858?s=N4IgTCBcDaIIICEDKAGA7AWgMxgHRoDYAOAaQAkAtDAFRAF0BfIA",
+          "ds": ""
+        }
+      ],
+      "3": [
+        {
+          "name": "LPDDR4 1GB для HPS",
+          "part": "MT53E1G32D4NQ-046-WT-F-TR",
+          "status": "need",
+          "desc": "Робоча RAM для ARM HPS — без неї Linux не підніметься. Окрема рейка від FPGA fabric RAM.",
+          "spec": "BGA200, 0.5мм pitch, той клас чіпа що в iWave SOM",
+          "price": 13,
+          "buy": "https://www.digikey.com/en/products/detail/micron-technology-inc/MT53E1G32D4NQ-046-WT-F-TR/17628678",
+          "ds": ""
+        },
+        {
+          "name": "MicroSD Card Slot (push-push)",
+          "part": "Molex 503398-1892",
+          "status": "need",
+          "desc": "Носій rootfs для Linux на HPS — найпростіший спосіб для першої версії, без BGA eMMC-чіпа.",
+          "spec": "Підтверджено: і iWave SOM, і Critical Link Dev Kit використовують microSD для rootfs",
+          "price": 0.85,
+          "buy": "https://www.digikey.com/en/products/detail/molex/5033981892/4555393?s=N4IgTCBcDaILIHsA2BTAHgAgKwAYDMeAnABwC0AjMYRALoC%2BQA",
+          "ds": ""
+        },
+        {
+          "name": "MT25QU128 — QSPI Config Flash",
+          "part": "MT25QU128ABA1EW7-0SIT",
+          "status": "have",
+          "desc": "128Mbit QSPI flash для FSBL/бітстріму. SDM завжди читає звідси перший блок в Active Serial режимі.",
+          "spec": "Той самий чіп що в Terasic DevKit",
+          "price": 18.73,
+          "buy": "https://www.digikey.com/en/products/detail/micron-technology-inc/MT25QU128ABA1EW7-0SIT/6595530",
+          "ds": ""
+        }
+      ],
+      "4": [
+        {
+          "name": "HPS Oscillator 25MHz",
+          "part": "Abracon ASE-25.000MHZ-LC-T",
+          "status": "need",
+          "desc": "ОБОВ'ЯЗКОВО заведений на виділений HPS IO pin — без нього ARM-ядро не прокинеться.",
+          "spec": "Підтверджено iWave SOM datasheet. Звір точний pin під A5EA007BB23BE6S перед розводкою",
+          "price": 1.2,
+          "buy": "https://www.digikey.com/en/products/detail/abracon-llc/ASE-25-000MHZ-L-C-T/1236885?s=N4IgTCBcDaIIICMBOBDAxgewHYAI4GUBRAWjAFYA6ABhoFkAJALWIBkBhYgFRAF0BfIA",
+          "ds": "https://abracon.com/datasheets/ASE.pdf"
+        },
+        {
+          "name": "LPDDR4 Clock Synthesizer (для другого кроку)",
+          "part": "Si5332A-B-GM",
+          "status": "need",
+          "desc": "199.95MHz диференційний clock для LPDDR4 банків — підключаєш коли додаєш RAM, не критично для першого JTAG bitstream.",
+          "spec": "Підтверджено: офіційний SOM використовує 199.95MHz LVDS саме для LPDDR4 reference clock",
+          "price": 5,
+          "buy": "https://www.digikey.com/en/products/detail/skyworks-solutions-inc/SI5332A-D-GM1/9685402",
+          "ds": ""
+        },
+        {
+          "name": "12MHz Crystal для FT2232HQ",
+          "part": "ABM3-12.000MHZ-D2Y-T",
+          "status": "need",
+          "desc": "FT2232HQ абсолютно не запуститься без власного тактування — ні USB enumeration, ні JTAG/UART не з'являться без нього.",
+          "spec": "HC-49 SMD + 2×18-22pF конденсатори обв'язки",
+          "price": 0.35,
+          "buy": "https://www.digikey.com/en/products/detail/abracon-llc/ABM3-12-000MHZ-D2Y-T/2344574?s=N4IgTCBcDaIIICECyBmAtARjAOgAz6QAkAtNAETAE00AVEAXQF8g",
+          "ds": ""
+        }
+      ],
+      "5": [
+        {
+          "name": "USB-C Controller",
+          "part": "FUSB302BMPX",
+          "status": "have",
+          "desc": "CC piни + базовий PD для USB-C живлення/даних. Достатньо для першої версії плати.",
+          "spec": "Critical Link Dev Kit обмежує до 1.5A @ 5V — той самий рівень достатній для мінімального devkit",
+          "price": 1.1,
+          "buy": "https://www.digikey.com/en/products/detail/onsemi/FUSB302BMPX/6138869",
+          "ds": ""
+        },
+        {
+          "name": "USB-C Connector (24-pin SMD)",
+          "part": "USB-3.1 Type-C Female 24P",
+          "status": "have",
+          "desc": "Фізичний роз'єм для живлення і програмування.",
+          "spec": "Закороти D+/D- пари для будь-якої орієнтації кабелю. D+/D- пара — 90Ω диференційний імпеданс",
+          "price": 1.16,
+          "buy": "https://rozetka.com.ua/ua/585554284/p585554284/",
+          "ds": ""
+        },
+        {
+          "name": "Config Mode DIP Switch (3-pin)",
+          "part": "E-Switch EG1218",
+          "status": "need",
+          "desc": "MSEL[2:0] вибір режиму завантаження (JTAG / AS Fast / AS Standard) — читається SDM лише при power-on.",
+          "spec": "3-position SPDT",
+          "price": 0.4,
+          "buy": "https://www.digikey.com/en/products/detail/e-switch/EG1218/101726",
+          "ds": ""
+        },
+        {
+          "name": "JTAG Header 10-pin",
+          "part": "Sullins GRPB052MWCN-RC",
+          "status": "need",
+          "desc": "Стандартний 10-pin для USB Blaster / FT2232H підключення до TCK/TMS/TDI/TDO (через level shifter).",
+          "spec": "2.54мм pitch, стандарт Altera USB-Blaster II",
+          "price": 0.91,
+          "buy": "https://www.digikey.com/en/products/detail/sullins-connector-solutions/GRPB052MWCN-RC/1786482?s=N4IgTCBcDaIMoFcA2SCWA7AzgAgOICUAFAIQAYBWMAWQHUBhAOQFp86QBdAXyA",
+          "ds": ""
+        },
+        {
+          "name": "FT2232HQ — USB-JTAG/UART Bridge",
+          "part": "FT2232HQ-REEL",
+          "status": "have",
+          "desc": "Один чіп — програмування FPGA через USB-C і одночасно UART-консоль для HPS. Сторона USB/JTAG-драйверів працює на 3.3V.",
+          "spec": "Той самий принцип що в Critical Link MitySOM-A5E Dev Kit",
+          "price": 4.65,
+          "buy": "https://eu.mouser.com/ProductDetail/FTDI/FT2232HQ-REEL?qs=D1%2FPMqvA103kEu75rXS7PA%3D%3D",
+          "ds": "https://ftdichip.com/wp-content/uploads/2020/08/DS_FT2232H.pdf"
+        },
+        {
+          "name": "SN74AXC4T774 — JTAG Level Shifter 3.3V↔1.8V",
+          "part": "SN74AXC4T774BQBR",
+          "status": "need",
+          "desc": "КРИТИЧНО: FT2232HQ працює на 3.3V, а SDM-банк конфігурації Agilex 5 (VCCIO_SDM) — 1.8V. Без цього шифтера пряме підключення може пошкодити SDM. Офіційно рекомендований TI чіп саме для JTAG-застосувань.",
+          "spec": "4-bit, direction-controlled, push-pull, до 380Mbps, 0.65-3.6V діапазон",
+          "price": 1.3,
+          "buy": "https://www.digikey.com/en/products/detail/texas-instruments/SN74AXC4T774BQBR/13627063?s=N4IgTCBcDaIMoDkDsAWAggDQMIoCpNQCEBFQgJRAF0BfIA",
+          "ds": "https://www.ti.com/lit/ds/symlink/sn74axc4t774.pdf"
+        },
+        {
+          "name": "93LC46B EEPROM (VID/PID конфігурація)",
+          "part": "93LC46B-I/SN",
+          "status": "need",
+          "desc": "Без неї Quartus Programmer бачить плату як 'Generic FTDI device'. Прошивкою VID/PID/дескрипторів через FT_PROG плата стає видимою як справжній USB-Blaster II.",
+          "spec": "SOIC-8, мікросхема пам'яті для USB дескрипторів",
+          "price": 0.267,
+          "buy": "https://eu.mouser.com/ProductDetail/Microchip-Technology/93LC46B-I-SN?qs=g6BBfX6YTkmj0a6KI7j5ww%3D%3D",
+          "ds": ""
+        }
+      ],
+      "6": [
+        {
+          "name": "LED CONFIG_DONE (зелений)",
+          "part": "Generic 0603 Green LED",
+          "status": "need",
+          "desc": "Загорається коли FPGA bitstream залився і чіп в user mode — твій головний індикатор успіху.",
+          "spec": "Підтверджено: і iWave SOM, і MitySOM-A5E мають аналогічні LED",
+          "price": 0.1,
+          "buy": "https://www.digikey.com",
+          "ds": ""
+        },
+        {
+          "name": "LED INIT_DONE (зелений)",
+          "part": "Generic 0603 Green LED",
+          "status": "need",
+          "desc": "Підтверджує, що вся FPGA fabric у user mode.",
+          "spec": "",
+          "price": 0.1,
+          "buy": "https://www.digikey.com/en/products/detail/liteon/LTST-C190KGKT/386815",
+          "ds": ""
+        },
+        {
+          "name": "LED Power/Status",
+          "part": "Generic 0603 Blue LED",
+          "status": "need",
+          "desc": "Загальний health-індикатор — живлення піднялось і стабільне.",
+          "spec": "",
+          "price": 0.1,
+          "buy": "https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/150060BS75000/4489895",
+          "ds": ""
+        },
+        {
+          "name": "2× Test LED на GPIO",
+          "part": "Generic 0603 LED ×2",
+          "status": "need",
+          "desc": "Hello World для FPGA fabric — перший Verilog проєкт блимає цими LED.",
+          "spec": "",
+          "price": 0.2,
+          "buy": "https://www.digikey.com/en/products/detail/liteon/LTST-C191KFKT/386833",
+          "ds": ""
+        },
+        {
+          "name": "2× Tactile Button на GPIO",
+          "part": "Generic SMD Tactile Switch ×2",
+          "status": "need",
+          "desc": "Кнопка → LED або лічильник — наочний доказ робочої fabric-логіки для захисту диплому.",
+          "spec": "",
+          "price": 0.3,
+          "buy": "https://www.digikey.com/en/products/detail/c-k/PTS526SK15SMTR2-LFS/10056626",
+          "ds": ""
+        },
+        {
+          "name": "Reset Button (nCONFIG)",
+          "part": "Generic SMD Tactile Switch",
+          "status": "need",
+          "desc": "Ручний рестарт конфігурації FPGA без перепідключення живлення.",
+          "spec": "",
+          "price": 0.3,
+          "buy": "https://www.digikey.com/en/products/detail/c-k/PTS526SK15SMTR2-LFS/10056626",
+          "ds": ""
+        }
+      ],
+      "7": [
+        {
+          "name": "Набір decoupling-конденсаторів",
+          "part": "100nF/1uF/10uF X7R bulk lot",
+          "status": "need",
+          "desc": "Розв'язка по всіх VCC рейках чіпа і периферії — обов'язково для стабільного старту.",
+          "spec": "",
+          "price": 5,
+          "buy": "https://www.digikey.com",
+          "ds": ""
+        },
+        {
+          "name": "Резистори-підтяжки (10K/4.7K/1K)",
+          "part": "Generic 0402/0603 resistor lot",
+          "status": "need",
+          "desc": "TCK pull-up до VCCIO_SDM, MSEL pull-up/down, nCONFIG/nSTATUS — стандартні підтяжки з datasheet.",
+          "spec": "",
+          "price": 2,
+          "buy": "https://www.digikey.com",
+          "ds": ""
+        },
+        {
+          "name": "Точні feedback-резистори (1%, low TCR)",
+          "part": "Vishay/Yageo 0402 1% lot",
+          "status": "need",
+          "desc": "Для TPS546D24A та DA9062 в ланцюгах зворотного зв'язку — похибка в пару відсотків означає перегрів core (0.7-0.9V) через неточну напругу.",
+          "spec": "1% або краще, низький температурний коефіцієнт",
+          "price": 1.5,
+          "buy": "https://www.digikey.com",
+          "ds": ""
+        }
+      ]
+    }
+  },
+  "exported": "2026-07-06T10:54:53.313Z"
+}

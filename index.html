@@ -8,9 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════
-   TOKENS — Nokia Shadow × Agilex Edge
-═══════════════════════════════════════════════ */
 :root {
   --bg:       #06080F;
   --bg2:      #090D18;
@@ -28,809 +25,270 @@
   --pixel:    'Press Start 2P', monospace;
   --mono:     'Share Tech Mono', monospace;
   --sans:     'Space Grotesk', sans-serif;
-  --px: 2px;  /* pixel unit */
 }
-
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
+body {background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;position:relative;}
+body::before {content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,200,255,.018) 2px,rgba(0,200,255,.018) 4px);pointer-events:none;z-index:999;}
+body::after {content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,200,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,.025) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;z-index:0;}
+.noise {position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5;}
 
-/* ─── SCANLINE OVERLAY (Nokia LCD vibe) ─── */
-body {
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--sans);
-  overflow-x:hidden;
-  position:relative;
-}
-body::before {
-  content:'';
-  position:fixed;inset:0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,200,255,.018) 2px,
-    rgba(0,200,255,.018) 4px
-  );
-  pointer-events:none;z-index:999;
-}
-/* ─── PIXEL GRID ─── */
-body::after {
-  content:'';
-  position:fixed;inset:0;
-  background-image:
-    linear-gradient(rgba(0,200,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,200,255,.025) 1px,transparent 1px);
-  background-size:24px 24px;
-  pointer-events:none;z-index:0;
-}
-
-/* ─── NOISE ─── */
-.noise {
-  position:fixed;inset:0;z-index:1;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity:.5;
-}
-
-/* ═══════════ NAV ═══════════ */
-nav {
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:56px;
-  background:rgba(6,8,15,.92);
-  border-bottom:1px solid var(--border2);
-  backdrop-filter:blur(16px);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 40px;
-}
-.nav-logo {
-  font-family:var(--pixel);
-  font-size:9px;
-  color:var(--neon);
-  letter-spacing:.12em;
-  text-shadow:0 0 12px var(--neon);
-  display:flex;align-items:center;gap:10px;
-}
-.nav-logo-icon{
-  width:24px;height:24px;flex-shrink:0;
-  filter:drop-shadow(0 0 6px var(--neon)) drop-shadow(0 0 12px var(--neon2));
-  animation:logoSpin 8s linear infinite, logoPulse 2.4s ease-in-out infinite;
-}
-@keyframes logoSpin{
-  0%,100%{transform:rotate(0deg);}
-  50%{transform:rotate(180deg);}
-}
-@keyframes logoPulse{
-  0%,100%{filter:drop-shadow(0 0 6px var(--neon)) drop-shadow(0 0 12px var(--neon2));}
-  50%{filter:drop-shadow(0 0 10px var(--neon3)) drop-shadow(0 0 18px var(--neon));}
-}
+nav {position:fixed;top:0;left:0;right:0;z-index:200;height:56px;background:rgba(6,8,15,.92);border-bottom:1px solid var(--border2);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;}
+.nav-logo {font-family:var(--pixel);font-size:9px;color:var(--neon);letter-spacing:.12em;text-shadow:0 0 12px var(--neon);display:flex;align-items:center;gap:10px;}
+.nav-logo-icon{width:24px;height:24px;flex-shrink:0;filter:drop-shadow(0 0 6px var(--neon)) drop-shadow(0 0 12px var(--neon2));animation:logoSpin 8s linear infinite, logoPulse 2.4s ease-in-out infinite;}
+@keyframes logoSpin{0%,100%{transform:rotate(0deg);}50%{transform:rotate(180deg);}}
+@keyframes logoPulse{0%,100%{filter:drop-shadow(0 0 6px var(--neon)) drop-shadow(0 0 12px var(--neon2));}50%{filter:drop-shadow(0 0 10px var(--neon3)) drop-shadow(0 0 18px var(--neon));}}
 .nav-logo .slash{color:var(--muted);margin:0 6px;}
 .nav-links {display:flex;gap:28px;list-style:none;}
-.nav-links a {
-  font-family:var(--mono);font-size:13px;
-  color:var(--muted);text-decoration:none;
-  letter-spacing:.08em;
-  transition:color .15s, text-shadow .15s;
-}
-.nav-links a:hover,
-.nav-links a.active {
-  color:var(--neon);
-  text-shadow:0 0 10px var(--neon);
-}
-.nav-right {
-  display:flex;align-items:center;gap:12px;
-}
-.nav-badge {
-  font-family:var(--pixel);font-size:8px;
-  color:var(--amber);
-  border:1px solid var(--amber);
-  padding:4px 10px;
-  letter-spacing:.1em;
-  box-shadow:0 0 8px rgba(255,179,0,.3);
-}
-/* blinking cursor */
-.blink {
-  display:inline-block;
-  width:8px;height:14px;
-  background:var(--neon);
-  animation:blink .9s step-end infinite;
-  vertical-align:middle;
-  box-shadow:0 0 6px var(--neon);
-}
+.nav-links a {font-family:var(--mono);font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .15s, text-shadow .15s;}
+.nav-links a:hover,.nav-links a.active {color:var(--neon);text-shadow:0 0 10px var(--neon);}
+.nav-right {display:flex;align-items:center;gap:12px;}
+.nav-badge {font-family:var(--pixel);font-size:8px;color:var(--amber);border:1px solid var(--amber);padding:4px 10px;letter-spacing:.1em;box-shadow:0 0 8px rgba(255,179,0,.3);}
+.blink {display:inline-block;width:8px;height:14px;background:var(--neon);animation:blink .9s step-end infinite;vertical-align:middle;box-shadow:0 0 6px var(--neon);}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 
-/* ═══════════ PAGE ═══════════ */
 .page{display:none;min-height:100vh;padding-top:56px;position:relative;z-index:2;}
 .page.active{display:block;}
 
-/* ═══════════ HERO ═══════════ */
-.hero {
-  min-height:calc(100vh - 56px);
-  display:grid;
-  grid-template-columns:1fr 420px;
-  align-items:center;
-  padding:80px;
-  gap:60px;
-  position:relative;
-  overflow:hidden;
-}
-.hero-bg-glow {
-  position:absolute;
-  top:50%;left:60%;
-  transform:translate(-50%,-50%);
-  width:800px;height:800px;
-  background:radial-gradient(circle,rgba(0,102,255,.08) 0%,transparent 65%);
-  pointer-events:none;
-  animation:breathe 7s ease-in-out infinite;
-}
+.hero {min-height:calc(100vh - 56px);display:grid;grid-template-columns:1fr 420px;align-items:center;padding:80px;gap:60px;position:relative;overflow:hidden;}
+.hero-bg-glow {position:absolute;top:50%;left:60%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(0,102,255,.08) 0%,transparent 65%);pointer-events:none;animation:breathe 7s ease-in-out infinite;}
 @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.12);}}
-
-/* eyebrow */
-.eyebrow {
-  font-family:var(--pixel);
-  font-size:8px;
-  color:var(--neon3);
-  letter-spacing:.18em;
-  margin-bottom:20px;
-  display:flex;align-items:center;gap:10px;
-}
-.eyebrow::before {
-  content:'▶';color:var(--neon3);font-size:8px;
-}
-
-/* hero title */
-.hero-title {
-  font-size:clamp(38px,4.5vw,64px);
-  font-weight:700;
-  line-height:1.05;
-  letter-spacing:-.025em;
-  margin-bottom:24px;
-}
-.hero-title .t1{
-  color:var(--text);
-  display:block;
-}
-.hero-title .t2{
-  display:block;
-  background:linear-gradient(110deg,var(--neon),var(--neon2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  filter:drop-shadow(0 0 16px rgba(0,200,255,.35));
-}
-
-.hero-desc {
-  font-size:15px;line-height:1.75;
-  color:var(--muted);margin-bottom:40px;
-  max-width:520px;
-}
+.eyebrow {font-family:var(--pixel);font-size:8px;color:var(--neon3);letter-spacing:.18em;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.eyebrow::before {content:'▶';color:var(--neon3);font-size:8px;}
+.hero-title {font-size:clamp(38px,4.5vw,64px);font-weight:700;line-height:1.05;letter-spacing:-.025em;margin-bottom:24px;}
+.hero-title .t1{color:var(--text);display:block;}
+.hero-title .t2{display:block;background:linear-gradient(110deg,var(--neon),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 16px rgba(0,200,255,.35));}
+.hero-desc {font-size:15px;line-height:1.75;color:var(--muted);margin-bottom:40px;max-width:520px;}
 .hero-desc b{color:var(--text);}
-
-/* pixel divider */
-.px-divider {
-  height:2px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--neon) 0px, var(--neon) 4px,
-    transparent 4px, transparent 8px
-  );
-  margin:32px 0;
-  opacity:.4;
-}
-
-/* stats */
-.hero-stats {
-  display:flex;gap:36px;margin-bottom:36px;
-}
-.stat-val {
-  font-family:var(--pixel);
-  font-size:16px;
-  color:var(--neon);
-  text-shadow:0 0 14px var(--neon);
-  line-height:1.4;
-}
-.stat-label {
-  font-family:var(--mono);
-  font-size:10px;color:var(--muted);
-  letter-spacing:.1em;text-transform:uppercase;margin-top:4px;
-}
-
-/* tags */
+.px-divider {height:2px;background:repeating-linear-gradient(90deg,var(--neon) 0px,var(--neon) 4px,transparent 4px,transparent 8px);margin:32px 0;opacity:.4;}
+.hero-stats {display:flex;gap:36px;margin-bottom:36px;}
+.stat-val {font-family:var(--pixel);font-size:16px;color:var(--neon);text-shadow:0 0 14px var(--neon);line-height:1.4;}
+.stat-label {font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;}
 .hero-tags{display:flex;gap:8px;flex-wrap:wrap;}
-.tag{
-  font-family:var(--mono);font-size:10px;
-  border:1px solid var(--border2);
-  color:var(--neon);padding:5px 12px;
-  letter-spacing:.06em;
-  transition:all .2s;
-  cursor:default;
-}
-.tag:hover{
-  background:rgba(0,200,255,.08);
-  box-shadow:0 0 10px rgba(0,200,255,.2);
-}
+.tag{font-family:var(--mono);font-size:10px;border:1px solid var(--border2);color:var(--neon);padding:5px 12px;letter-spacing:.06em;transition:all .2s;cursor:default;}
+.tag:hover{background:rgba(0,200,255,.08);box-shadow:0 0 10px rgba(0,200,255,.2);}
 
-/* ═══════════ NOKIA 3D MODEL ═══════════ */
-.nokia-scene {
-  display:flex;align-items:center;justify-content:center;
-  perspective:900px;
-  height:500px;
-  position:relative;
-}
-.nokia-wrap {
-  animation:nokia-float 4s ease-in-out infinite;
-  transform-style:preserve-3d;
-}
-@keyframes nokia-float{
-  0%,100%{transform:translateY(0px) rotateY(-15deg) rotateX(5deg);}
-  50%{transform:translateY(-18px) rotateY(15deg) rotateX(-3deg);}
-}
-.nokia {
-  width:140px;
-  position:relative;
-  transform-style:preserve-3d;
-}
-/* phone body */
-.nokia-body {
-  width:140px;
-  background: linear-gradient(160deg,#1A2030 0%,#0D1320 60%,#050810 100%);
-  border:2px solid rgba(0,200,255,.35);
-  border-radius:22px 22px 28px 28px;
-  padding:14px 12px 20px;
-  box-shadow:
-    0 0 0 1px rgba(0,200,255,.1),
-    0 0 40px rgba(0,100,255,.25),
-    0 0 80px rgba(0,200,255,.08),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  position:relative;
-}
-/* screen area */
-.nokia-screen {
-  background:#000;
-  border:2px solid rgba(0,200,255,.4);
-  border-radius:8px;
-  height:88px;
-  margin-bottom:12px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:
-    0 0 0 1px rgba(0,200,255,.15),
-    0 0 16px rgba(0,200,255,.3),
-    inset 0 0 20px rgba(0,0,0,.8);
-}
-.nokia-screen-inner {
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:6px;
-}
-.screen-pixel-art {
-  font-family:var(--pixel);
-  font-size:5.5px;
-  color:var(--neon);
-  text-align:center;
-  line-height:1.9;
-  text-shadow:0 0 6px var(--neon);
-  animation:screen-flicker 8s ease-in-out infinite;
-}
-@keyframes screen-flicker{
-  0%,95%,100%{opacity:1;}
-  96%{opacity:.3;}
-  97%{opacity:.9;}
-  98%{opacity:.4;}
-  99%{opacity:1;}
-}
-.screen-scanline {
-  position:absolute;inset:0;
-  background:repeating-linear-gradient(
-    0deg,transparent,transparent 2px,
-    rgba(0,0,0,.4) 2px,rgba(0,0,0,.4) 4px
-  );
-  pointer-events:none;
-}
-.screen-bar {
-  position:absolute;top:0;left:0;right:0;
-  background: linear-gradient(180deg,rgba(0,200,255,.08) 0%,transparent 100%);
-  height:20px;
-}
-/* nav row */
-.nokia-nav-row {
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:10px;
-  padding:0 4px;
-}
-.nokia-softkey {
-  width:28px;height:10px;
-  background:rgba(0,200,255,.12);
-  border:1px solid rgba(0,200,255,.25);
-  border-radius:3px;
-}
-.nokia-dpad {
-  width:28px;height:28px;
-  position:relative;
-}
-.nokia-dpad::before,
-.nokia-dpad::after {
-  content:'';position:absolute;
-  background:rgba(0,200,255,.18);
-  border:1px solid rgba(0,200,255,.3);
-  border-radius:2px;
-}
-.nokia-dpad::before{width:10px;height:28px;left:9px;top:0;}
-.nokia-dpad::after{width:28px;height:10px;left:0;top:9px;}
-/* center button */
-.nokia-center-btn {
-  width:12px;height:12px;
-  background:var(--neon);
-  border-radius:50%;
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  box-shadow:0 0 8px var(--neon);
-  z-index:1;
-}
-/* keypad */
-.nokia-keypad {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:5px;
-  padding:0 4px;
-}
-.nkey {
-  height:16px;
-  background:rgba(15,25,45,.8);
-  border:1px solid rgba(0,200,255,.18);
-  border-radius:4px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--pixel);
-  font-size:4px;
-  color:rgba(0,200,255,.6);
-  transition:all .1s;
-}
-/* label plate */
-.nokia-label {
-  font-family:var(--pixel);
-  font-size:5px;
-  color:rgba(0,200,255,.4);
-  text-align:center;
-  margin-top:10px;
-  letter-spacing:.15em;
-}
-/* glow under phone */
-.nokia-shadow {
-  position:absolute;
-  bottom:-30px;left:50%;
-  transform:translateX(-50%);
-  width:120px;height:20px;
-  background:radial-gradient(ellipse,rgba(0,200,255,.25) 0%,transparent 70%);
-  filter:blur(8px);
-  animation:shadow-pulse 4s ease-in-out infinite;
-}
-@keyframes shadow-pulse{
-  0%,100%{opacity:.6;transform:translateX(-50%) scaleX(1);}
-  50%{opacity:1;transform:translateX(-50%) scaleX(1.3);}
-}
-/* chip badge floating */
-.chip-badge {
-  position:absolute;
-  top:-20px;right:-40px;
-  background:rgba(13,20,34,.9);
-  border:1px solid var(--neon2);
-  padding:8px 12px;
-  font-family:var(--mono);font-size:9px;
-  color:var(--neon2);
-  letter-spacing:.08em;
-  box-shadow:0 0 14px rgba(0,102,255,.3);
-  white-space:nowrap;
-  animation:badge-float 3s ease-in-out infinite;
-}
-@keyframes badge-float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-6px);}
-}
-.chip-badge::before{
-  content:'';
-  position:absolute;
-  bottom:-6px;left:16px;
-  width:1px;height:6px;
-  background:var(--neon2);
-}
+.nokia-scene {display:flex;align-items:center;justify-content:center;perspective:900px;height:500px;position:relative;}
 
-/* ═══════════ SECTIONS ═══════════ */
 .section{padding:80px;position:relative;z-index:2;}
-.section-eyebrow {
-  font-family:var(--pixel);font-size:8px;
-  color:var(--neon3);letter-spacing:.18em;
-  margin-bottom:12px;
-  display:flex;align-items:center;gap:10px;
-}
+.section-eyebrow {font-family:var(--pixel);font-size:8px;color:var(--neon3);letter-spacing:.18em;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
 .section-eyebrow::before{content:'▶';font-size:7px;}
-.section-title{
-  font-size:30px;font-weight:700;
-  margin-bottom:8px;letter-spacing:-.015em;
-}
+.section-title{font-size:30px;font-weight:700;margin-bottom:8px;letter-spacing:-.015em;}
 .section-sub{color:var(--muted);font-size:14px;margin-bottom:44px;font-family:var(--mono);}
 
-/* ─── INFO CARDS ─── */
-.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;
-  background:var(--border);}
-.info-card{
-  background:var(--panel);
-  padding:28px;
-  position:relative;overflow:hidden;
-  transition:background .2s;
-}
-.info-card::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,rgba(0,200,255,.03) 0%,transparent 60%);
-  opacity:0;transition:opacity .3s;
-}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);}
+.info-card{background:var(--panel);padding:28px;position:relative;overflow:hidden;transition:background .2s;}
+.info-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,200,255,.03) 0%,transparent 60%);opacity:0;transition:opacity .3s;}
 .info-card:hover{background:#111B2E;}
 .info-card:hover::after{opacity:1;}
-/* pixel corner accent */
-.info-card::before{
-  content:'';
-  position:absolute;top:0;left:0;
-  width:24px;height:24px;
-  border-top:2px solid var(--neon);
-  border-left:2px solid var(--neon);
-  opacity:.5;
-}
-.info-card-icon{
-  font-size:24px;margin-bottom:14px;
-}
+.info-card::before{content:'';position:absolute;top:0;left:0;width:24px;height:24px;border-top:2px solid var(--neon);border-left:2px solid var(--neon);opacity:.5;}
+.info-card-icon{font-size:24px;margin-bottom:14px;}
 .info-card-title{font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text);}
 .info-card-body{font-size:13px;color:var(--muted);line-height:1.7;font-family:var(--mono);}
 
-/* ─── TIMELINE ─── */
 .tl-wrap{position:relative;padding-left:40px;}
-.tl-line{
-  position:absolute;left:0;top:0;bottom:0;
-  width:1px;
-  background:linear-gradient(to bottom,transparent,var(--neon2) 15%,var(--neon2) 85%,transparent);
-  opacity:.4;
-}
-.timeline-item{
-  position:relative;margin-bottom:36px;
-  opacity:0;transform:translateX(-16px);
-  transition:all .5s;
-}
+.tl-line{position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--neon2) 15%,var(--neon2) 85%,transparent);opacity:.4;}
+.timeline-item{position:relative;margin-bottom:36px;opacity:0;transform:translateX(-16px);transition:all .5s;}
 .timeline-item.visible{opacity:1;transform:translateX(0);}
-.tl-dot{
-  position:absolute;
-  left:-46px;top:2px;
-  width:12px;height:12px;
-  border:2px solid var(--neon2);
-  background:var(--bg);
-  transform:rotate(45deg);
-  transition:background .2s;
-}
-.tl-dot.done{
-  background:var(--neon2);
-  box-shadow:0 0 10px var(--neon2);
-}
+.tl-dot{position:absolute;left:-46px;top:2px;width:12px;height:12px;border:2px solid var(--neon2);background:var(--bg);transform:rotate(45deg);transition:background .2s;}
+.tl-dot.done{background:var(--neon2);box-shadow:0 0 10px var(--neon2);}
 .tl-date{font-family:var(--pixel);font-size:8px;color:var(--neon3);margin-bottom:6px;letter-spacing:.08em;}
 .tl-head{font-size:15px;font-weight:600;margin-bottom:6px;}
 .tl-body{font-size:13px;color:var(--muted);line-height:1.65;font-family:var(--mono);}
 
-/* ─── TECH CARDS ─── */
 .tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
-.tech-card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  padding:22px;
-  font-family:var(--mono);font-size:12px;
-  line-height:1.8;color:var(--muted);
-  position:relative;
-}
-.tech-card-title{
-  font-family:var(--pixel);font-size:8px;
-  color:var(--neon);margin-bottom:14px;
-  letter-spacing:.1em;
-  text-shadow:0 0 8px rgba(0,200,255,.4);
-}
+.tech-card{background:var(--panel);border:1px solid var(--border);padding:22px;font-family:var(--mono);font-size:12px;line-height:1.8;color:var(--muted);position:relative;}
+.tech-card-title{font-family:var(--pixel);font-size:8px;color:var(--neon);margin-bottom:14px;letter-spacing:.1em;text-shadow:0 0 8px rgba(0,200,255,.4);}
 
-/* ═══════════ ELEMENT BASE PAGE ═══════════ */
-.eb-header{
-  padding:60px 80px 32px;
-  border-bottom:1px solid var(--border);
-  position:relative;z-index:2;
-}
-.eb-title{
-  font-family:var(--pixel);font-size:14px;
-  color:var(--neon);
-  text-shadow:0 0 16px rgba(0,200,255,.5);
-  margin-bottom:8px;letter-spacing:.08em;
-}
+.eb-header{padding:60px 80px 32px;border-bottom:1px solid var(--border);position:relative;z-index:2;}
+.eb-title{font-family:var(--pixel);font-size:14px;color:var(--neon);text-shadow:0 0 16px rgba(0,200,255,.5);margin-bottom:8px;letter-spacing:.08em;}
 .eb-sub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:24px;}
 .eb-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
 
-/* ─── BUTTONS ─── */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--pixel);font-size:8px;
-  letter-spacing:.06em;
-  padding:10px 18px;
-  border:1px solid var(--border2);
-  background:transparent;
-  color:var(--text);
-  cursor:pointer;
-  transition:all .2s;
-  text-transform:uppercase;
-}
-.btn:hover{
-  background:rgba(0,200,255,.08);
-  border-color:var(--neon);
-  box-shadow:0 0 12px rgba(0,200,255,.2);
-}
-.btn.primary{
-  background:rgba(0,200,255,.12);
-  border-color:var(--neon);
-  color:var(--neon);
-  box-shadow:0 0 12px rgba(0,200,255,.15);
-}
-.btn.primary:hover{
-  background:rgba(0,200,255,.2);
-  box-shadow:0 0 20px rgba(0,200,255,.3);
-}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--pixel);font-size:8px;letter-spacing:.06em;padding:10px 18px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;transition:all .2s;text-transform:uppercase;}
+.btn:hover{background:rgba(0,200,255,.08);border-color:var(--neon);box-shadow:0 0 12px rgba(0,200,255,.2);}
+.btn.primary{background:rgba(0,200,255,.12);border-color:var(--neon);color:var(--neon);box-shadow:0 0 12px rgba(0,200,255,.15);}
+.btn.primary:hover{background:rgba(0,200,255,.2);box-shadow:0 0 20px rgba(0,200,255,.3);}
 .btn.danger{border-color:var(--red);color:var(--red);}
 .btn.danger:hover{background:rgba(255,59,92,.08);}
 
-/* ─── SEARCH ─── */
-.search-box{
-  flex:1;min-width:180px;max-width:300px;
-  background:var(--panel);
-  border:1px solid var(--border);
-  display:flex;align-items:center;gap:8px;
-  padding:0 14px;
-  transition:border-color .2s;
-}
+.search-box{flex:1;min-width:180px;max-width:300px;background:var(--panel);border:1px solid var(--border);display:flex;align-items:center;gap:8px;padding:0 14px;transition:border-color .2s;}
 .search-box:focus-within{border-color:var(--neon);}
-.search-box input{
-  background:none;border:none;outline:none;
-  color:var(--text);font-family:var(--mono);
-  font-size:13px;width:100%;padding:10px 0;
-}
+.search-box input{background:none;border:none;outline:none;color:var(--text);font-family:var(--mono);font-size:13px;width:100%;padding:10px 0;}
 .search-box input::placeholder{color:var(--muted);}
 .search-icon{color:var(--muted);}
 
-/* ─── FILTER TABS ─── */
 .filter-tabs{display:flex;gap:0;border:1px solid var(--border);}
-.filter-tab{
-  font-family:var(--pixel);font-size:7px;
-  letter-spacing:.05em;
-  padding:10px 14px;cursor:pointer;
-  color:var(--muted);
-  border-right:1px solid var(--border);
-  transition:all .2s;
-  background:none;
-  border-top:none;border-bottom:none;border-left:none;
-}
+.filter-tab{font-family:var(--pixel);font-size:7px;letter-spacing:.05em;padding:10px 14px;cursor:pointer;color:var(--muted);border-right:1px solid var(--border);transition:all .2s;background:none;border-top:none;border-bottom:none;border-left:none;}
 .filter-tab:last-child{border-right:none;}
-.filter-tab:hover,.filter-tab.active{
-  color:var(--neon);
-  background:rgba(0,200,255,.07);
-  text-shadow:0 0 8px rgba(0,200,255,.4);
-}
+.filter-tab:hover,.filter-tab.active{color:var(--neon);background:rgba(0,200,255,.07);text-shadow:0 0 8px rgba(0,200,255,.4);}
 
-/* ─── SUMMARY BAR ─── */
-.summary-bar{
-  margin:0 80px 0;
-  border:1px solid var(--border);
-  background:var(--panel);
-  display:flex;
-  position:relative;z-index:2;
-}
-.summary-cell{
-  flex:1;padding:16px 20px;
-  border-right:1px solid var(--border);
-  text-align:center;
-}
+.summary-bar{margin:0 80px 0;border:1px solid var(--border);background:var(--panel);display:flex;position:relative;z-index:2;}
+.summary-cell{flex:1;padding:16px 20px;border-right:1px solid var(--border);text-align:center;}
 .summary-cell:last-child{border-right:none;}
-.summary-val{
-  font-family:var(--pixel);font-size:16px;font-weight:normal;
-  line-height:1.3;
-}
+.summary-val{font-family:var(--pixel);font-size:16px;font-weight:normal;line-height:1.3;}
 .summary-key{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:4px;letter-spacing:.08em;}
 .val-blue{color:var(--neon);text-shadow:0 0 10px rgba(0,200,255,.5);}
 .val-gold{color:var(--amber);text-shadow:0 0 10px rgba(255,179,0,.4);}
 .val-green{color:var(--green);text-shadow:0 0 10px rgba(0,230,118,.4);}
 .val-red{color:var(--red);text-shadow:0 0 10px rgba(255,59,92,.4);}
 
-/* ─── ELEMENTS GRID ─── */
 .elements-container{padding:28px 80px 80px;position:relative;z-index:2;}
 .category-section{margin-bottom:48px;}
-.category-header{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:16px;padding-bottom:10px;
-  border-bottom:1px solid var(--border);
-}
-.category-name{
-  font-family:var(--pixel);font-size:8px;
-  color:var(--neon3);letter-spacing:.12em;
-  text-shadow:0 0 8px rgba(0,255,170,.3);
-}
-.category-count{
-  font-family:var(--mono);font-size:11px;
-  color:var(--muted);
-  background:var(--panel);
-  border:1px solid var(--border);
-  padding:2px 8px;
-}
+.category-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.category-name{font-family:var(--pixel);font-size:8px;color:var(--neon3);letter-spacing:.12em;text-shadow:0 0 8px rgba(0,255,170,.3);}
+.category-count{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--panel);border:1px solid var(--border);padding:2px 8px;}
 .elements-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);}
 
-/* ─── ELEMENT CARD ─── */
-.el-card{
-  background:var(--panel);
-  transition:background .15s;
-  position:relative;overflow:hidden;cursor:pointer;
-}
+.el-card{background:var(--panel);transition:background .15s;position:relative;overflow:hidden;cursor:pointer;}
 .el-card:hover{background:#0F1828;}
-.el-card::after{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--neon),transparent);
-  opacity:0;transition:opacity .2s;
-}
+.el-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:0;transition:opacity .2s;}
 .el-card:hover::after{opacity:.6;}
-.el-card-top{
-  display:flex;gap:14px;padding:18px;
-  border-bottom:1px solid var(--border);align-items:flex-start;
-}
-.el-img{
-  width:64px;height:64px;
-  background:var(--bg);
-  border:1px solid var(--border);
-  flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;overflow:hidden;
-  position:relative;
-}
+.el-card-top{display:flex;gap:14px;padding:18px;border-bottom:1px solid var(--border);align-items:flex-start;}
+.el-img{width:64px;height:64px;background:var(--bg);border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;position:relative;}
 .el-img img{width:100%;height:100%;object-fit:cover;}
 .el-img .no-img{font-size:22px;color:var(--muted);}
 .el-info{flex:1;min-width:0;}
 .el-name{font-size:13px;font-weight:600;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);}
 .el-part{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:8px;}
 .el-tags-row{display:flex;gap:4px;flex-wrap:wrap;}
-.el-tag{
-  font-family:var(--mono);font-size:8px;
-  padding:2px 7px;
-  border:1px solid var(--border);
-  color:var(--muted);
-}
-.el-card-mid{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 18px;gap:12px;
-}
+.el-tag{font-family:var(--mono);font-size:8px;padding:2px 7px;border:1px solid var(--border);color:var(--muted);}
+.el-card-mid{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;gap:12px;}
 .el-price{font-family:var(--pixel);font-size:11px;color:var(--amber);text-shadow:0 0 8px rgba(255,179,0,.4);}
 .el-price-label{font-family:var(--mono);font-size:9px;color:var(--muted);}
-.el-status{
-  font-family:var(--pixel);font-size:7px;
-  padding:4px 9px;border:1px solid;
-  letter-spacing:.06em;white-space:nowrap;
-}
+.el-status{font-family:var(--pixel);font-size:7px;padding:4px 9px;border:1px solid;letter-spacing:.06em;white-space:nowrap;}
 .status-ok{color:var(--green);border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.05);}
 .status-warn{color:var(--amber);border-color:rgba(255,179,0,.3);background:rgba(255,179,0,.05);}
 .status-bad{color:var(--red);border-color:rgba(255,59,92,.3);background:rgba(255,59,92,.05);}
 .status-info{color:var(--neon);border-color:rgba(0,200,255,.3);background:rgba(0,200,255,.05);}
 .el-card-bottom{padding:0 18px 14px;display:flex;gap:8px;flex-wrap:wrap;}
-.el-link{
-  font-family:var(--mono);font-size:10px;
-  color:var(--neon2);
-  text-decoration:none;
-  border:1px solid rgba(0,102,255,.3);
-  padding:3px 10px;
-  transition:all .15s;
-}
+.el-link{font-family:var(--mono);font-size:10px;color:var(--neon2);text-decoration:none;border:1px solid rgba(0,102,255,.3);padding:3px 10px;transition:all .15s;}
 .el-link:hover{background:rgba(0,102,255,.1);}
 .el-link.ds{color:var(--neon3);border-color:rgba(0,255,170,.3);}
 .el-link.ds:hover{background:rgba(0,255,170,.07);}
-.el-notes{
-  padding:10px 18px;
-  font-family:var(--mono);font-size:11px;
-  color:var(--muted);line-height:1.6;
-  border-top:1px solid var(--border);
-  background:rgba(0,0,0,.2);
-}
+.el-notes{padding:10px 18px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);background:rgba(0,0,0,.2);}
 .el-notes.has-issues{color:var(--amber);}
 
-/* ═══════════ MODAL ═══════════ */
-.modal-bg{
-  position:fixed;inset:0;z-index:400;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(8px);
-  display:none;align-items:center;justify-content:center;
-}
+.modal-bg{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;}
 .modal-bg.open{display:flex;}
-.modal{
-  background:var(--bg2);
-  border:1px solid var(--border2);
-  width:100%;max-width:560px;
-  max-height:90vh;overflow-y:auto;
-  box-shadow:0 0 60px rgba(0,200,255,.12);
-}
-.modal-header{
-  padding:20px 24px;
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-}
+.modal{background:var(--bg2);border:1px solid var(--border2);width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 0 60px rgba(0,200,255,.12);}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
 .modal-title{font-family:var(--pixel);font-size:10px;color:var(--neon);letter-spacing:.1em;text-shadow:0 0 10px rgba(0,200,255,.4);}
-.modal-close{
-  background:none;border:none;color:var(--muted);
-  cursor:pointer;font-size:16px;padding:4px;
-  transition:color .15s;
-}
+.modal-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:4px;transition:color .15s;}
 .modal-close:hover{color:var(--red);}
 .modal-body{padding:24px;}
 .form-group{margin-bottom:16px;}
 .form-label{font-family:var(--pixel);font-size:7px;color:var(--muted);display:block;margin-bottom:6px;letter-spacing:.08em;}
-.form-input,.form-select,.form-textarea{
-  width:100%;
-  background:var(--panel);
-  border:1px solid var(--border);
-  color:var(--text);
-  padding:10px 12px;
-  font-family:var(--mono);font-size:13px;
-  outline:none;
-  transition:border-color .15s;
-}
+.form-input,.form-select,.form-textarea{width:100%;background:var(--panel);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-family:var(--mono);font-size:13px;outline:none;transition:border-color .15s;}
 .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--neon);}
 .form-textarea{min-height:80px;resize:vertical;}
 .form-select option{background:var(--bg2);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.modal-footer{
-  padding:18px 24px;border-top:1px solid var(--border);
-  display:flex;gap:10px;justify-content:flex-end;
-}
+.modal-footer{padding:18px 24px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;}
 
-/* ═══════════ TOAST ═══════════ */
-.toast{
-  position:fixed;bottom:28px;right:28px;z-index:500;
-  background:var(--panel);
-  border:1px solid var(--border2);
-  padding:12px 18px;
-  font-family:var(--mono);font-size:12px;
-  transform:translateY(80px);opacity:0;
-  transition:all .3s;min-width:220px;
-}
+.toast{position:fixed;bottom:28px;right:28px;z-index:500;background:var(--panel);border:1px solid var(--border2);padding:12px 18px;font-family:var(--mono);font-size:12px;transform:translateY(80px);opacity:0;transition:all .3s;min-width:220px;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.success{border-left:3px solid var(--green);color:var(--green);}
 .toast.error{border-left:3px solid var(--red);color:var(--red);}
 .toast.info{border-left:3px solid var(--neon);color:var(--neon);}
 
-/* ═══════════ ANIMATIONS ═══════════ */
 .fade-up{opacity:0;transform:translateY(24px);transition:all .6s;}
 .fade-up.visible{opacity:1;transform:translateY(0);}
-.timeline-item{opacity:0;transform:translateX(-16px);transition:all .5s;}
-.timeline-item.visible{opacity:1;transform:translateX(0);}
 
-/* ═══════════ FOOTER ═══════════ */
-footer{
-  border-top:1px solid var(--border);
-  padding:28px 80px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:relative;z-index:2;
-}
+footer{border-top:1px solid var(--border);padding:28px 80px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2;}
 .footer-text{font-family:var(--mono);font-size:11px;color:var(--muted);}
-.footer-badge{
-  font-family:var(--pixel);font-size:7px;
-  border:1px solid var(--border2);
-  color:var(--neon);padding:4px 12px;
-  letter-spacing:.1em;
-}
+.footer-badge{font-family:var(--pixel);font-size:7px;border:1px solid var(--border2);color:var(--neon);padding:4px 12px;letter-spacing:.1em;}
 
-/* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--neon2);}
-
 [contenteditable]:hover{outline:1px dashed rgba(0,200,255,.35);}
 [contenteditable]:focus{outline:1px solid var(--neon);background:rgba(0,200,255,.03);}
 
-/* ═══════════ MOBILE — ≤480px ═══════════ */
+/* ═══════════ DEVKIT PAGE — v3.0 fully verified ═══════════ */
+.dk-hero{padding:60px 80px 20px;border-bottom:1px solid var(--border);}
+.dk-hero-title{font-family:var(--pixel);font-size:14px;color:var(--neon3);text-shadow:0 0 16px rgba(0,255,170,.5);margin-bottom:10px;letter-spacing:.08em;}
+.dk-hero-sub{font-family:var(--mono);font-size:12px;color:var(--muted);max-width:760px;line-height:1.7;margin-bottom:20px;}
+.dk-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.dk-badge{font-family:var(--mono);font-size:10px;border:1px solid rgba(0,255,170,.3);color:var(--neon3);padding:5px 12px;letter-spacing:.04em;background:rgba(0,255,170,.04);}
+.dk-source-note{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:14px;line-height:1.8;border-left:2px solid var(--neon2);padding-left:12px;}
+.dk-source-note a{color:var(--neon2);text-decoration:none;}
+.dk-source-note a:hover{text-decoration:underline;}
+.dk-correction{margin-top:16px;border:1px solid rgba(255,59,92,.3);background:rgba(255,59,92,.04);padding:14px 16px;}
+.dk-correction-title{font-family:var(--pixel);font-size:8px;color:var(--red);letter-spacing:.06em;margin-bottom:8px;}
+.dk-correction-body{font-family:var(--mono);font-size:11px;color:var(--text);line-height:1.7;}
+.dk-correction-body code{color:var(--neon);background:rgba(0,200,255,.07);padding:1px 5px;}
+
+.dk-progress-bar{margin:0 80px;border:1px solid var(--border);background:var(--panel);display:flex;position:relative;z-index:2;}
+.dk-stage{flex:1;padding:14px 16px;border-right:1px solid var(--border);position:relative;}
+.dk-stage:last-child{border-right:none;}
+.dk-stage-num{font-family:var(--pixel);font-size:8px;color:var(--muted);margin-bottom:6px;}
+.dk-stage.active .dk-stage-num{color:var(--neon3);text-shadow:0 0 8px rgba(0,255,170,.4);}
+.dk-stage-label{font-family:var(--mono);font-size:10px;color:var(--text);}
+
+.dk-body{padding:36px 80px 80px;}
+.dk-block{margin-bottom:52px;}
+.dk-block-header{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap;}
+.dk-block-num{font-family:var(--pixel);font-size:11px;color:var(--neon3);text-shadow:0 0 10px rgba(0,255,170,.4);}
+.dk-block-title{font-size:17px;font-weight:600;}
+.dk-block-why{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.75;margin:8px 0 18px;max-width:800px;}
+.dk-block-why b{color:var(--text);}
+.dk-block-why code{color:var(--neon);background:rgba(0,200,255,.07);padding:1px 5px;font-size:11px;}
+
+.dk-comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1px;background:var(--border);}
+.dk-comp{background:var(--panel);padding:16px 18px;position:relative;cursor:pointer;transition:background .15s;}
+.dk-comp:hover{background:#111B2E;}
+.dk-comp-del{position:absolute;top:6px;right:6px;font-family:var(--mono);font-size:10px;color:var(--muted);background:none;border:none;cursor:pointer;padding:2px 6px;opacity:0;transition:opacity .15s;}
+.dk-comp:hover .dk-comp-del{opacity:1;}
+.dk-comp-del:hover{color:var(--red);}
+.dk-comp.have{box-shadow:inset 3px 0 0 var(--green);}
+.dk-comp.need{box-shadow:inset 3px 0 0 var(--amber);}
+.dk-comp-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;}
+.dk-comp-name{font-size:13px;font-weight:600;color:var(--text);}
+.dk-comp-flag{font-family:var(--pixel);font-size:6px;letter-spacing:.05em;padding:3px 7px;white-space:nowrap;height:fit-content;}
+.flag-have{color:var(--green);border:1px solid rgba(0,230,118,.35);background:rgba(0,230,118,.06);}
+.flag-need{color:var(--amber);border:1px solid rgba(255,179,0,.35);background:rgba(255,179,0,.06);}
+.dk-comp-part{font-family:var(--mono);font-size:10px;color:var(--neon2);margin-bottom:8px;}
+.dk-comp-desc{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.65;margin-bottom:10px;}
+.dk-comp-spec{font-family:var(--mono);font-size:10px;color:var(--neon3);margin-bottom:8px;opacity:.85;}
+.dk-comp-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.dk-comp-price{font-family:var(--pixel);font-size:10px;color:var(--amber);}
+.dk-comp-links{display:flex;gap:6px;}
+.dk-comp-links a{font-family:var(--mono);font-size:9px;color:var(--neon2);text-decoration:none;border:1px solid rgba(0,102,255,.3);padding:3px 8px;}
+.dk-comp-links a:hover{background:rgba(0,102,255,.1);}
+.dk-comp-links a.ds{color:var(--neon3);border-color:rgba(0,255,170,.3);}
+
+.dk-total-bar{margin-top:50px;border:1px solid var(--border2);background:var(--panel);display:flex;flex-wrap:wrap;}
+.dk-total-cell{flex:1;min-width:160px;padding:20px 24px;border-right:1px solid var(--border);text-align:center;}
+.dk-total-cell:last-child{border-right:none;}
+.dk-total-val{font-family:var(--pixel);font-size:20px;color:var(--neon);text-shadow:0 0 14px rgba(0,200,255,.5);}
+.dk-total-key{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:6px;letter-spacing:.08em;}
+
+.dk-checklist{margin-top:28px;border:1px solid var(--border);background:var(--panel);padding:24px 28px;}
+.dk-checklist-title{font-family:var(--pixel);font-size:9px;color:var(--neon);letter-spacing:.08em;margin-bottom:16px;}
+.dk-check-item{display:flex;gap:10px;align-items:flex-start;font-family:var(--mono);font-size:12px;color:var(--text);margin-bottom:10px;line-height:1.65;}
+.dk-check-item::before{content:'☐';color:var(--neon3);flex-shrink:0;}
+.dk-check-item b{color:var(--neon3);}
+
+.dk-boot-flow{margin-top:30px;border:1px solid var(--border);background:var(--panel);padding:22px 26px;}
+.dk-boot-title{font-family:var(--pixel);font-size:9px;color:var(--neon3);letter-spacing:.08em;margin-bottom:16px;}
+.dk-boot-step{display:flex;gap:14px;align-items:flex-start;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+.dk-boot-step-num{font-family:var(--pixel);font-size:9px;color:var(--neon);flex-shrink:0;width:24px;}
+.dk-boot-step b{color:var(--text);}
+
 @media(max-width:480px){
-  /* NAV */
+  .dk-hero{padding:24px 16px 16px;}
+  .dk-hero-title{font-size:10px;}
+  .dk-hero-sub{font-size:11px;}
+  .dk-progress-bar{margin:0 16px;flex-wrap:wrap;}
+  .dk-stage{flex:1 1 50%;border-bottom:1px solid var(--border);}
+  .dk-body{padding:24px 16px 60px;}
+  .dk-comp-grid{grid-template-columns:1fr;}
+  .dk-block-title{font-size:15px;}
+  .dk-total-cell{min-width:45%;}
+}
+
+@media(max-width:480px){
   nav{padding:0 14px;height:50px;}
   .nav-logo{font-size:7px;gap:6px;}
   .nav-logo-icon{width:18px;height:18px;}
@@ -839,14 +297,7 @@ footer{
   .blink{display:none;}
   .nav-links{gap:16px;}
   .nav-links a{font-size:11px;}
-
-  /* HERO */
-  .hero{
-    grid-template-columns:1fr;
-    padding:24px 16px 32px;
-    gap:0;
-    min-height:auto;
-  }
+  .hero{grid-template-columns:1fr;padding:24px 16px 32px;gap:0;min-height:auto;}
   .hero-title{font-size:26px;margin-bottom:16px;}
   .hero-desc{font-size:13px;margin-bottom:24px;}
   .eyebrow{font-size:6.5px;margin-bottom:14px;}
@@ -856,49 +307,32 @@ footer{
   .hero-tags{gap:6px;}
   .tag{font-size:9px;padding:4px 9px;}
   .px-divider{margin:20px 0;}
-
-  /* 3D phone — ховаємо на зовсім маленьких, бо WebGL важкий */
   .nokia-scene{height:280px;}
-
-  /* SECTIONS */
   .section{padding:32px 16px;}
   .section-title{font-size:22px;}
   .section-sub{font-size:12px;margin-bottom:28px;}
-
-  /* INFO CARDS */
   .info-grid{grid-template-columns:1fr;}
   .info-card{padding:20px 16px;}
   .info-card-title{font-size:13px;}
   .info-card-body{font-size:12px;}
-
-  /* TIMELINE */
   .tl-wrap{padding-left:28px;}
   .tl-dot{left:-34px;width:10px;height:10px;}
   .tl-head{font-size:13px;}
   .tl-body{font-size:12px;}
-
-  /* TECH CARDS */
   .tech-grid{grid-template-columns:1fr;}
   .tech-card{padding:16px;}
-
-  /* ELEMENTS PAGE */
   .eb-header{padding:20px 16px 20px;}
   .eb-title{font-size:10px;}
   .eb-controls{flex-direction:column;align-items:stretch;gap:8px;}
   .search-box{max-width:100%;min-width:0;}
-  .filter-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;
-    scrollbar-width:none;}
+  .filter-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;scrollbar-width:none;}
   .filter-tabs::-webkit-scrollbar{display:none;}
   .filter-tab{font-size:6px;padding:9px 10px;white-space:nowrap;flex-shrink:0;}
   .btn{font-size:7px;padding:9px 14px;}
-
-  /* SUMMARY BAR */
   .summary-bar{margin:0 16px;}
   .summary-cell{padding:10px 8px;}
   .summary-val{font-size:13px;}
   .summary-key{font-size:7px;}
-
-  /* ELEMENTS CONTAINER */
   .elements-container{padding:16px 16px 60px;}
   .elements-grid{grid-template-columns:1fr;}
   .el-card-top{padding:14px;}
@@ -910,24 +344,16 @@ footer{
   .el-status{font-size:6px;padding:3px 7px;}
   .el-card-bottom{padding:0 14px 12px;}
   .el-notes{font-size:10px;padding:8px 14px;}
-
-  /* MODAL */
   .modal{margin:8px;width:calc(100% - 16px);max-height:95vh;}
   .modal-body{padding:16px;}
   .modal-header{padding:14px 16px;}
   .modal-footer{padding:12px 16px;flex-wrap:wrap;}
   .form-row{grid-template-columns:1fr;}
-  .form-input,.form-select,.form-textarea{font-size:16px;} /* 16px = no zoom on iOS */
-
-  /* FOOTER */
+  .form-input,.form-select,.form-textarea{font-size:16px;}
   footer{padding:20px 16px;flex-direction:column;gap:8px;text-align:center;}
   .footer-text{font-size:10px;}
-
-  /* TOAST */
   .toast{right:12px;left:12px;min-width:0;bottom:16px;}
 }
-
-/* ═══════════ TABLET — 481–900px ═══════════ */
 @media(min-width:481px) and (max-width:900px){
   nav{padding:0 20px;}
   .nav-badge{font-size:7px;padding:3px 8px;}
@@ -943,31 +369,24 @@ footer{
   .form-row{grid-template-columns:1fr;}
   footer{padding:24px 28px;flex-direction:column;gap:10px;text-align:center;}
   .form-input,.form-select,.form-textarea{font-size:16px;}
+  .dk-hero,.dk-body{padding-left:28px;padding-right:28px;}
+  .dk-progress-bar{margin:0 28px;}
 }
 </style>
 </head>
 <body>
 <div class="noise"></div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">
     <svg class="nav-logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
       <rect x="12" y="12" width="24" height="24" rx="2" fill="none" stroke="var(--neon)" stroke-width="2"/>
       <rect x="18" y="18" width="12" height="12" rx="1" fill="var(--neon)" opacity="0.25" stroke="var(--neon3)" stroke-width="1"/>
       <g stroke="var(--neon)" stroke-width="2" stroke-linecap="round">
-        <line x1="12" y1="18" x2="6" y2="18"/>
-        <line x1="12" y1="24" x2="6" y2="24"/>
-        <line x1="12" y1="30" x2="6" y2="30"/>
-        <line x1="36" y1="18" x2="42" y2="18"/>
-        <line x1="36" y1="24" x2="42" y2="24"/>
-        <line x1="36" y1="30" x2="42" y2="30"/>
-        <line x1="18" y1="12" x2="18" y2="6"/>
-        <line x1="24" y1="12" x2="24" y2="6"/>
-        <line x1="30" y1="12" x2="30" y2="6"/>
-        <line x1="18" y1="36" x2="18" y2="42"/>
-        <line x1="24" y1="36" x2="24" y2="42"/>
-        <line x1="30" y1="36" x2="30" y2="42"/>
+        <line x1="12" y1="18" x2="6" y2="18"/><line x1="12" y1="24" x2="6" y2="24"/><line x1="12" y1="30" x2="6" y2="30"/>
+        <line x1="36" y1="18" x2="42" y2="18"/><line x1="36" y1="24" x2="42" y2="24"/><line x1="36" y1="30" x2="42" y2="30"/>
+        <line x1="18" y1="12" x2="18" y2="6"/><line x1="24" y1="12" x2="24" y2="6"/><line x1="30" y1="12" x2="30" y2="6"/>
+        <line x1="18" y1="36" x2="18" y2="42"/><line x1="24" y1="36" x2="24" y2="42"/><line x1="30" y1="36" x2="30" y2="42"/>
       </g>
     </svg>
     ДИПЛОМЧІК<span class="slash">/</span>КПІ<span class="slash">/</span>КЕОА
@@ -975,6 +394,7 @@ footer{
   <ul class="nav-links">
     <li><a href="#" onclick="showPage('home');return false;" id="nav-home" class="active">Проєкт</a></li>
     <li><a href="#" onclick="showPage('elements');return false;" id="nav-elements">Елементна база</a></li>
+    <li><a href="#" onclick="showPage('devkit');return false;" id="nav-devkit">Мінімальний DevKit</a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-badge">DIPLOMCHIK 2026</div>
@@ -982,13 +402,9 @@ footer{
   </div>
 </nav>
 
-<!-- ═══════════════════ HOME PAGE ═══════════════════ -->
 <div class="page active" id="page-home">
-
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg-glow"></div>
-
     <div class="hero-content" style="position:relative;z-index:2;">
       <div class="eyebrow">Дипломна робота · КПІ · 2024–2026</div>
       <h1 class="hero-title">
@@ -998,139 +414,57 @@ footer{
       <p class="hero-desc" id="hero-desc" contenteditable="true">
         Розробка повнофункціонального мобільного пристрою на базі <b>Intel Agilex 5E SoC FPGA</b> з ARM Cortex-A55 ядрами та програмованою логікою. Власна PCB, RTL-драйвери периферії, 5G-зв'язок, AMOLED-дисплей, тепловізор, 48MP камера.
       </p>
-
       <div class="px-divider"></div>
-
       <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-val" contenteditable="true">69K</div>
-          <div class="stat-label">Logic Elements</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val" contenteditable="true">8–12</div>
-          <div class="stat-label">Шарів PCB</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val" contenteditable="true">5G</div>
-          <div class="stat-label">Зв'язок</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val" contenteditable="true">RTL</div>
-          <div class="stat-label">Рівень розробки</div>
-        </div>
+        <div class="stat-item"><div class="stat-val" contenteditable="true">69K</div><div class="stat-label">Logic Elements</div></div>
+        <div class="stat-item"><div class="stat-val" contenteditable="true">8–12</div><div class="stat-label">Шарів PCB</div></div>
+        <div class="stat-item"><div class="stat-val" contenteditable="true">5G</div><div class="stat-label">Зв'язок</div></div>
+        <div class="stat-item"><div class="stat-val" contenteditable="true">RTL</div><div class="stat-label">Рівень розробки</div></div>
       </div>
-
       <div class="hero-tags">
-        <span class="tag">Verilog</span>
-        <span class="tag">Agilex 5E</span>
-        <span class="tag">MIPI DSI/CSI</span>
-        <span class="tag">5G · LTE</span>
-        <span class="tag">LPDDR5</span>
-        <span class="tag">Quartus Prime</span>
-        <span class="tag">Linux / HPS</span>
-        <span class="tag">Altium Designer</span>
-        <span class="tag">Nokia Form Factor</span>
+        <span class="tag">Verilog</span><span class="tag">Agilex 5E</span><span class="tag">MIPI DSI/CSI</span>
+        <span class="tag">5G · LTE</span><span class="tag">LPDDR5</span><span class="tag">Quartus Prime</span>
+        <span class="tag">Linux / HPS</span><span class="tag">Altium Designer</span><span class="tag">Nokia Form Factor</span>
       </div>
     </div>
-
-    <!-- Three.js 3D Phone -->
     <div class="nokia-scene" style="position:relative;">
       <canvas id="phone-canvas" style="width:100%;height:100%;display:block;"></canvas>
-      <div style="
-        position:absolute;top:18px;right:16px;
-        background:rgba(9,13,24,.88);
-        border:1px solid rgba(0,102,255,.5);
-        padding:10px 14px;
-        font-family:'Share Tech Mono',monospace;
-        font-size:9px;color:#0066FF;
-        line-height:1.8;
-        box-shadow:0 0 16px rgba(0,102,255,.25);
-        pointer-events:none;
-      ">▸ INTEL AGILEX 5E<br><span style="color:#3A4A6B;">A5EA007BB23BE6S · 69KLE</span></div>
-      <div style="
-        position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
-        display:flex;flex-direction:column;align-items:center;gap:10px;
-      ">
-        <button onclick="nokiaTwist()" style="
-          font-family:'Press Start 2P',monospace;font-size:8px;
-          color:#00C8FF;background:rgba(0,200,255,.08);
-          border:1px solid rgba(0,200,255,.4);padding:8px 20px;
-          cursor:pointer;letter-spacing:.1em;
-          box-shadow:0 0 14px rgba(0,200,255,.2);
-          transition:all .2s;
-        " onmouseover="this.style.background='rgba(0,200,255,.18)'" onmouseout="this.style.background='rgba(0,200,255,.08)'">
-          ↺ TWIST
-        </button>
-        <div id="phone-hint" style="
-          font-family:'Press Start 2P',monospace;font-size:7px;
-          color:rgba(0,200,255,.35);letter-spacing:.12em;
-          pointer-events:none;transition:opacity .5s;
-        ">DRAG TO ROTATE</div>
+      <div style="position:absolute;top:18px;right:16px;background:rgba(9,13,24,.88);border:1px solid rgba(0,102,255,.5);padding:10px 14px;font-family:'Share Tech Mono',monospace;font-size:9px;color:#0066FF;line-height:1.8;box-shadow:0 0 16px rgba(0,102,255,.25);pointer-events:none;">▸ INTEL AGILEX 5E<br><span style="color:#3A4A6B;">A5EA007BB23BE6S · 69KLE</span></div>
+      <div style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <button onclick="nokiaTwist()" style="font-family:'Press Start 2P',monospace;font-size:8px;color:#00C8FF;background:rgba(0,200,255,.08);border:1px solid rgba(0,200,255,.4);padding:8px 20px;cursor:pointer;letter-spacing:.1em;box-shadow:0 0 14px rgba(0,200,255,.2);transition:all .2s;" onmouseover="this.style.background='rgba(0,200,255,.18)'" onmouseout="this.style.background='rgba(0,200,255,.08)'">↺ TWIST</button>
+        <div id="phone-hint" style="font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(0,200,255,.35);letter-spacing:.12em;pointer-events:none;transition:opacity .5s;">DRAG TO ROTATE</div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="section fade-up">
     <div class="section-eyebrow">Суть проєкту</div>
     <h2 class="section-title">Що це і навіщо</h2>
     <p class="section-sub" contenteditable="true">Клікни і редагуй текст прямо тут</p>
     <div class="info-grid">
-      <div class="info-card fade-up">
-        <div class="info-card-icon">🧠</div>
-        <div class="info-card-title" contenteditable="true">FPGA + ARM в одному чіпі</div>
-        <div class="info-card-body" contenteditable="true">Intel Agilex 5E SoC поєднує програмовану логіку FPGA (69K LE) та ARM Cortex-A55. Це дозволяє реалізувати весь стек від RTL-драйверів до Linux-застосунків.</div>
-      </div>
-      <div class="info-card fade-up">
-        <div class="info-card-icon">📱</div>
-        <div class="info-card-title" contenteditable="true">Реальний телефон у Nokia-корпусі</div>
-        <div class="info-card-body" contenteditable="true">AMOLED-дисплей 2.4", тепловізор, 48MP камера IMX586, 5G Quectel RG255C, WiFi/BT, GPS — на кастомній PCB у компактному Nokia форм-факторі.</div>
-      </div>
-      <div class="info-card fade-up">
-        <div class="info-card-icon">⚡</div>
-        <div class="info-card-title" contenteditable="true">Власні RTL-драйвери на Verilog</div>
-        <div class="info-card-body" contenteditable="true">MIPI DSI для дисплея, MIPI CSI для камери, UART для 5G-модему, I2C для датчиків — написані в Quartus Prime з нуля або через IP-cores.</div>
-      </div>
-      <div class="info-card fade-up">
-        <div class="info-card-icon">🏆</div>
-        <div class="info-card-title" contenteditable="true">Наукова цінність</div>
-        <div class="info-card-body" contenteditable="true">Перший повністю задокументований FPGA SoC телефон на Agilex 5E. Демонстрація hardware-software co-design від транзистора до застосунку.</div>
-      </div>
+      <div class="info-card fade-up"><div class="info-card-icon">🧠</div><div class="info-card-title" contenteditable="true">FPGA + ARM в одному чіпі</div><div class="info-card-body" contenteditable="true">Intel Agilex 5E SoC поєднує програмовану логіку FPGA (69K LE) та ARM Cortex-A55. Це дозволяє реалізувати весь стек від RTL-драйверів до Linux-застосунків.</div></div>
+      <div class="info-card fade-up"><div class="info-card-icon">📱</div><div class="info-card-title" contenteditable="true">Реальний телефон у Nokia-корпусі</div><div class="info-card-body" contenteditable="true">AMOLED-дисплей 2.4", тепловізор, 48MP камера IMX586, 5G Quectel RG255C, WiFi/BT, GPS — на кастомній PCB у компактному Nokia форм-факторі.</div></div>
+      <div class="info-card fade-up"><div class="info-card-icon">⚡</div><div class="info-card-title" contenteditable="true">Власні RTL-драйвери на Verilog</div><div class="info-card-body" contenteditable="true">MIPI DSI для дисплея, MIPI CSI для камери, UART для 5G-модему, I2C для датчиків — написані в Quartus Prime з нуля або через IP-cores.</div></div>
+      <div class="info-card fade-up"><div class="info-card-icon">🏆</div><div class="info-card-title" contenteditable="true">Наукова цінність</div><div class="info-card-body" contenteditable="true">Перший повністю задокументований FPGA SoC телефон на Agilex 5E. Демонстрація hardware-software co-design від транзистора до застосунку.</div></div>
     </div>
   </section>
 
-  <!-- TIMELINE -->
   <section class="section fade-up" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
     <div class="section-eyebrow">Прогрес</div>
     <h2 class="section-title">Хронологія розробки</h2>
     <p class="section-sub">Клікни на текст щоб редагувати будь-який етап</p>
-    <div class="tl-wrap">
-      <div class="tl-line"></div>
-      <div id="timeline-container"></div>
-    </div>
-    <div style="margin-top:28px;">
-      <button class="btn primary" onclick="addTimelineItem()">▸ Додати етап</button>
-    </div>
+    <div class="tl-wrap"><div class="tl-line"></div><div id="timeline-container"></div></div>
+    <div style="margin-top:28px;"><button class="btn primary" onclick="addTimelineItem()">▸ Додати етап</button></div>
   </section>
 
-  <!-- TECH STACK -->
   <section class="section fade-up">
     <div class="section-eyebrow">Технологічний стек</div>
     <h2 class="section-title">Інструменти та платформи</h2>
     <p class="section-sub">Весь інструментарій проєкту</p>
     <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tech-card-title">▸ EDA / CAD</div>
-        <span contenteditable="true">Altium Designer — схема і PCB<br>Intel Quartus Prime Pro — синтез<br>ModelSim — симуляція RTL<br>ANSYS HFSS — антена<br>CST Studio — RF аналіз</span>
-      </div>
-      <div class="tech-card">
-        <div class="tech-card-title">▸ SOFTWARE / OS</div>
-        <span contenteditable="true">Verilog / SystemVerilog — RTL<br>Linux Yocto — HPS ОС<br>OpenEmbedded — BSP<br>U-Boot — завантажувач<br>Python / C — утиліти</span>
-      </div>
-      <div class="tech-card">
-        <div class="tech-card-title">▸ ВИРОБНИЦТВО</div>
-        <span contenteditable="true">JLCPCB / PCBWay — controlled impedance<br>BGA reflow — пайка Agilex 5E<br>X-Ray — перевірка BGA<br>VNA — RF характеристики<br>Осцилограф 4GHz — дебаг</span>
-      </div>
+      <div class="tech-card"><div class="tech-card-title">▸ EDA / CAD</div><span contenteditable="true">Altium Designer — схема і PCB<br>Intel Quartus Prime Pro — синтез<br>ModelSim — симуляція RTL<br>ANSYS HFSS — антена<br>CST Studio — RF аналіз</span></div>
+      <div class="tech-card"><div class="tech-card-title">▸ SOFTWARE / OS</div><span contenteditable="true">Verilog / SystemVerilog — RTL<br>Linux Yocto — HPS ОС<br>OpenEmbedded — BSP<br>U-Boot — завантажувач<br>Python / C — утиліти</span></div>
+      <div class="tech-card"><div class="tech-card-title">▸ ВИРОБНИЦТВО</div><span contenteditable="true">JLCPCB / PCBWay — controlled impedance<br>BGA reflow — пайка Agilex 5E<br>X-Ray — перевірка BGA<br>VNA — RF характеристики<br>Осцилограф 4GHz — дебаг</span></div>
     </div>
   </section>
 
@@ -1140,17 +474,12 @@ footer{
   </footer>
 </div>
 
-<!-- ═══════════════════ ELEMENTS PAGE ═══════════════════ -->
 <div class="page" id="page-elements">
-
   <div class="eb-header">
     <div class="eb-title">▸ ЕЛЕМЕНТНА_БАЗА.DB</div>
     <div class="eb-sub">Компонентний список · FPGA Phone · Intel Agilex 5E</div>
     <div class="eb-controls">
-      <div class="search-box">
-        <span class="search-icon">⌕</span>
-        <input type="text" id="search-input" placeholder="пошук компонентів..." oninput="filterElements()">
-      </div>
+      <div class="search-box"><span class="search-icon">⌕</span><input type="text" id="search-input" placeholder="пошук компонентів..." oninput="filterElements()"></div>
       <div class="filter-tabs" id="filter-tabs">
         <button class="filter-tab active" onclick="setFilter('all',this)">ВСІ</button>
         <button class="filter-tab" onclick="setFilter('fpga',this)">FPGA</button>
@@ -1167,35 +496,206 @@ footer{
       <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
     </div>
   </div>
-
   <div class="summary-bar">
-    <div class="summary-cell">
-      <div class="summary-val val-blue" id="sum-count">0</div>
-      <div class="summary-key">Компонентів</div>
-    </div>
-    <div class="summary-cell">
-      <div class="summary-val val-gold" id="sum-total">$0</div>
-      <div class="summary-key">Сума</div>
-    </div>
-    <div class="summary-cell">
-      <div class="summary-val val-green" id="sum-ok">0</div>
-      <div class="summary-key">Підтверджено</div>
-    </div>
-    <div class="summary-cell">
-      <div class="summary-val val-red" id="sum-issues">0</div>
-      <div class="summary-key">Проблеми</div>
-    </div>
+    <div class="summary-cell"><div class="summary-val val-blue" id="sum-count">0</div><div class="summary-key">Компонентів</div></div>
+    <div class="summary-cell"><div class="summary-val val-gold" id="sum-total">$0</div><div class="summary-key">Сума</div></div>
+    <div class="summary-cell"><div class="summary-val val-green" id="sum-ok">0</div><div class="summary-key">Підтверджено</div></div>
+    <div class="summary-cell"><div class="summary-val val-red" id="sum-issues">0</div><div class="summary-key">Проблеми</div></div>
   </div>
-
   <div class="elements-container" id="elements-container"></div>
-
   <footer>
     <div class="footer-text">Елементна база · FPGA Phone · КПІ ФЕЛ КЕОА 2026</div>
     <div class="footer-badge" id="last-updated">ОНОВЛЕНО ЩОЙНО</div>
   </footer>
 </div>
 
-<!-- MODAL -->
+<!-- ═══════════════════ DEVKIT PAGE v3.0 — FULLY VERIFIED ═══════════════════ -->
+<div class="page" id="page-devkit">
+
+  <div class="dk-hero">
+    <div class="dk-hero-title">▸ МІНІМАЛЬНИЙ_DEVKIT.SCH v3.0</div>
+    <p class="dk-hero-sub" contenteditable="true">
+      Мета цієї плати — не телефон, а перший впевнений крок: завантажити bitstream в Agilex 5E,
+      підняти Linux на ARM HPS (Cortex-A55), побачити блимання GPIO. Список нижче — реальні компоненти,
+      перевірені проти трьох офіційних виробничих плат на тому самому BGA-пакеті B32A. v3.0 закриває
+      всі критичні прогалини v2.0: тактування USB-моста, рівень-шифтер для JTAG, EEPROM ідентифікації,
+      достатній запас струму по 3.3V та RTC-кварц.
+    </p>
+    <div class="dk-badges">
+      <span class="dk-badge">✓ Bitstream через USB-C/JTAG</span>
+      <span class="dk-badge">✓ Linux на HPS</span>
+      <span class="dk-badge">✓ GPIO тест (LED + кнопки)</span>
+      <span class="dk-badge">✓ Перевірений power-tree</span>
+      <span class="dk-badge">✓ JTAG level-shift 3.3V→1.8V</span>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;">
+      <button class="btn primary" onclick="exportDevkitJSON()">↓ Скачати JSON</button>
+      <button class="btn" onclick="document.getElementById('importDevkitFile').click()">↑ Імпорт JSON</button>
+      <input type="file" id="importDevkitFile" accept=".json" style="display:none" onchange="importDevkitJSON(event)">
+    </div>
+    <div class="dk-source-note">
+      Список звірений проти трьох реальних виробничих плат на тому самому BGA-пакеті B32A
+      (32×32мм), що і твій A5EA007BB23BE6S:
+      iWave <a href="https://iwave-global.com/wp-content/uploads/2025/07/iG-RainboW-G58M-Altera-Agilex-5-SoC-FPGA-SOM-Hardware-Datasheet-R2.0-REL1.0.pdf" target="_blank">iG-RainboW-G58M SOM Datasheet</a> (PMIC, power tree, clocking),
+      Critical Link <a href="https://www.criticallink.com/wp-content/uploads/MitySOM-A5E-Processor-Datasheet.pdf" target="_blank">MitySOM-A5E Datasheet</a> та
+      <a href="https://www.criticallink.com/wp-content/uploads/MitySOM-A5E-Standard-Development-Kit-Datasheet.pdf" target="_blank">MitySOM-A5E Dev Kit Datasheet</a> (USB-C, microSD, EPE-вимоги).
+      Додатково: FTDI <a href="https://ftdichip.com/wp-content/uploads/2020/08/DS_FT2232H.pdf" target="_blank">FT2232H Datasheet</a> (кварц 12MHz, EEPROM),
+      TI <a href="https://www.ti.com/lit/ds/symlink/sn74axc4t774.pdf" target="_blank">SN74AXC4T774 Datasheet</a> (direction-controlled level shifter для JTAG).
+    </div>
+    <div class="dk-correction">
+      <div class="dk-correction-title">⚠ v3.0 — ВИПРАВЛЕНО ПІСЛЯ ДРУГОЇ ПЕРЕВІРКИ (критичні прогалини v2.0)</div>
+      <div class="dk-correction-body" contenteditable="true">
+        1) <code>FT2232HQ</code> не запуститься без власного <code>12MHz</code> кварцу — додано.
+        2) Без EEPROM <code>93LC46B</code> Quartus Programmer бачить плату як "Generic FTDI", а не як USB-Blaster II — додано.
+        3) <code>TPS62177</code> (500mA) на 3.3V лінії був на межі — замінено на <code>TPS62130</code> (3A, pin-to-pin сумісний),
+        бо FT2232H в High-Speed + QSPI flash + логіка LED разом легко з'їдають 300-400mA.
+        4) RTC у <code>DA9062</code> не цокатиме без кварцу <code>32.768kHz</code> — додано.
+        5) Найкритичніше: <code>FT2232HQ</code> працює на JTAG-стороні від <b>3.3V</b>, а SDM-банк конфігурації
+        Agilex 5 (<code>VCCIO_SDM</code>) — це <b>1.8V</b>. Пряме підключення спалить SDM. Додано direction-controlled
+        level shifter <b>SN74AXC4T774</b> (TI офіційно рекомендує саме його для JTAG: 4-bit, push-pull, до 380Mbps,
+        робочий діапазон 0.65–3.6V) між FT2232HQ і JTAG-піном FPGA.
+      </div>
+    </div>
+  </div>
+
+  <div class="dk-progress-bar">
+    <div class="dk-stage active"><div class="dk-stage-num">КРОК 1</div><div class="dk-stage-label">Живлення піднялось</div></div>
+    <div class="dk-stage"><div class="dk-stage-num">КРОК 2</div><div class="dk-stage-label">SDM бачить QSPI flash</div></div>
+    <div class="dk-stage"><div class="dk-stage-num">КРОК 3</div><div class="dk-stage-label">Bitstream залив через JTAG</div></div>
+    <div class="dk-stage"><div class="dk-stage-num">КРОК 4</div><div class="dk-stage-label">Linux на HPS, GPIO блимає</div></div>
+  </div>
+
+  <div class="dk-body">
+
+    <div class="dk-block">
+      <div class="dk-block-header"><span class="dk-block-num">01</span><span class="dk-block-title">Ядро — сам чіп</span></div>
+      <p class="dk-block-why">Без цього все інше не має сенсу. <b>A5EA007BB23BE6S</b> — у тебе вже є в базі, статус "bad" через довгу доставку. Найдовша поставка визначає терміни всього проєкту, тому реєстрація через викладача в Altera University Program — пріоритет №1, паралельно з замовленням решти компонентів.</p>
+      <div class="dk-comp-grid" id="dk-grid-1"></div>
+      <div style="margin-top:14px;"><button class="btn" onclick="openDkAddModal(1)">▸ Додати компонент у цей блок</button></div>
+    </div>
+
+    <div class="dk-block">
+      <div class="dk-block-header"><span class="dk-block-num">02</span><span class="dk-block-title">Живлення — power tree (виправлено й перевірено двічі)</span></div>
+      <p class="dk-block-why">
+        Agilex 5E має окремі рейки: справжнє <code>core</code> (<code>VCC</code>/<code>VCCP</code>, 0.70-0.90V SmartVID),
+        <code>VCCRCORE</code> periphery (1.2V), <code>VCCIO_SDM</code>/<code>VCCIO_HPS</code> (фіксовані 1.8V), і
+        HVIO/HSIO банки під твою периферію. <b>DA9062</b> — той самий чіп що в офіційному iWave SOM,
+        бере на себе все periphery/IO живлення через 4×Buck + 4×LDO по I2C (адреса 0x58 в iWave, перевір під свій A5EA007).
+        Для справжнього <code>core</code> з SmartVID потрібен окремий регулятор з апаратною підтримкою PMBus —
+        <b>TPS546D24A</b> чує команди напруги напряму від SDM, на відміну від простого adjustable buck.
+        Окрема 3.3V лінія для USB/JTAG/clock логіки тепер на <b>TPS62130 (3A)</b> замість заниженого 500mA
+        варіанту — FT2232H в High-Speed режимі + активне читання QSPI flash легко з'їдають 300-400mA разом.
+        RTC backup через coin cell тримач і кварц 32.768kHz — для повноцінної роботи <code>VCCBAT</code>/RTC піна PMIC.
+      </p>
+      <div class="dk-comp-grid" id="dk-grid-2"></div>
+      <div style="margin-top:14px;"><button class="btn" onclick="openDkAddModal(2)">▸ Додати компонент у цей блок</button></div>
+    </div>
+
+    <div class="dk-block">
+      <div class="dk-block-header"><span class="dk-block-num">03</span><span class="dk-block-title">Пам'ять — без неї HPS не запуститься</span></div>
+      <p class="dk-block-why">
+        SDM завжди вантажить FSBL з QSPI flash першим у режимі Active Serial — це обов'язково для
+        автономного завантаження без програматора. Для HPS потрібен окремий LPDDR4 для робочої RAM —
+        не опціонально, без RAM Linux просто не підніметься (офіційний iWave SOM рекомендує 1×32bit
+        LPDDR4 для HPS окремо від FPGA fabric RAM). MicroSD як носій rootfs — найпростіший спосіб
+        для першої версії, не потребує окремого BGA eMMC чіпа.
+      </p>
+      <div class="dk-comp-grid" id="dk-grid-3"></div>
+      <div style="margin-top:14px;"><button class="btn" onclick="openDkAddModal(3)">▸ Додати компонент у цей блок</button></div>
+    </div>
+
+    <div class="dk-block">
+      <div class="dk-block-header"><span class="dk-block-num">04</span><span class="dk-block-title">Тактування — без цього нічого не стартує</span></div>
+      <p class="dk-block-why">
+        Найлегше забути і найкритичніше. Officially iWave SOM datasheet вимагає окремий HPS
+        тактовий генератор заведений на виділений HPS IO pin — без нього ARM-ядро ніколи не прокинеться.
+        Окремо: <b>FT2232HQ потребує власний 12MHz кварц</b> з двома конденсаторами обв'язки 18-22pF — без нього
+        USB-міст не підніме навіть High-Speed enumeration, і JTAG/UART просто не з'явиться в системі.
+        Офіційний SOM також використовує 199.95MHz диференційний clock для LPDDR4 банків від
+        окремого clock synthesizer — для мінімального devkit без важкої FPGA-логіки можна обійтись простим
+        HPS-генератором на старті і додати LPDDR4 clock synthesizer окремим кроком коли підключатимеш RAM.
+      </p>
+      <div class="dk-comp-grid" id="dk-grid-4"></div>
+      <div style="margin-top:14px;"><button class="btn" onclick="openDkAddModal(4)">▸ Додати компонент у цей блок</button></div>
+    </div>
+
+    <div class="dk-block">
+      <div class="dk-block-header"><span class="dk-block-num">05</span><span class="dk-block-title">Програмування та конфігурація (з level-shifter)</span></div>
+      <p class="dk-block-why">
+        <code>MSEL[2:0]</code> вибирає режим завантаження (JTAG / Active Serial Fast / Standard) і
+        зчитується SDM лише раз — при power-on, тому потрібен фізичний DIP-перемикач для зручного
+        тестування без перепайки. <code>nCONFIG</code>, <code>nSTATUS</code>, <code>CONF_DONE</code> —
+        дедіковані піни SDM з резисторними підтяжками. <b>FT2232HQ</b> вже є в базі — той самий принцип
+        що в Critical Link MitySOM-A5E Dev Kit (один чіп = JTAG канал A + UART канал B для HPS консолі
+        через один USB-C кабель), але працює на стороні USB при <b>3.3V</b>, тоді як SDM-банк FPGA — <b>1.8V</b>.
+        <b>Критично:</b> без рівень-шифтера <b>SN74AXC4T774</b> між ними — пряме підключення може пошкодити
+        SDM. EEPROM <b>93LC46B</b> прошиває VID/PID/дескриптори, щоб Quartus Programmer розпізнав плату
+        саме як USB-Blaster II, а не "Generic FTDI device".
+      </p>
+      <div class="dk-comp-grid" id="dk-grid-5"></div>
+      <div style="margin-top:14px;"><button class="btn" onclick="openDkAddModal(5)">▸ Додати компонент у цей блок</button></div>
+    </div>
+
+    <div class="dk-block">
+      <div class="dk-block-header"><span class="dk-block-num">06</span><span class="dk-block-title">Індикація та GPIO-тест</span></div>
+      <p class="dk-block-why">
+        І в iWave SOM, і в MitySOM-A5E явно прописані LED для статусу конфігурації — твій єдиний
+        спосіб візуально зрозуміти "бітстрім залився / FPGA в user mode" без осцилографа. Додаткові
+        2 LED + 2 кнопки на GPIO банку — твій "Hello World": найпростіший проєкт на Verilog (кнопка → LED),
+        наочний доказ для викладача що FPGA fabric реально працює.
+      </p>
+      <div class="dk-comp-grid" id="dk-grid-6"></div>
+      <div style="margin-top:14px;"><button class="btn" onclick="openDkAddModal(6)">▸ Додати компонент у цей блок</button></div>
+    </div>
+
+    <div class="dk-block">
+      <div class="dk-block-header"><span class="dk-block-num">07</span><span class="dk-block-title">USB-C та допоміжні пасивні елементи</span></div>
+      <p class="dk-block-why">
+        <b>FUSB302</b> вже в базі — для USB-C достатньо CC-пінів і базового PD на старті. Реальний
+        Critical Link MitySOM-A5E Dev Kit використовує USB-C з обмеженням струму до 1.5A при +5V —
+        цього достатньо для мінімальної плати без важкої периферії. Bulk-набір розв'язуючих
+        конденсаторів та точних резисторів зворотного зв'язку (для TPS546D24A/DA9062, 1% або краще,
+        низький ТКО) — без них схема "на папері" робоча, але на практиці ловить шум, дрейфує по
+        напрузі core і не стартує стабільно.
+      </p>
+      <div class="dk-comp-grid" id="dk-grid-7"></div>
+      <div style="margin-top:14px;"><button class="btn" onclick="openDkAddModal(7)">▸ Додати компонент у цей блок</button></div>
+    </div>
+
+    <div class="dk-total-bar" id="dk-total-bar"></div>
+
+    <div class="dk-boot-flow">
+      <div class="dk-boot-title">▸ ПОСЛІДОВНІСТЬ ПЕРШОГО ЗАПУСКУ</div>
+      <div class="dk-boot-step"><div class="dk-boot-step-num">01</div><div><b>Живлення:</b> USB-C подає 5V → FUSB302 узгоджує CC → TPS546D24A піднімає core по SmartVID, DA9062 піднімає periphery/IO банки в правильній послідовності, TPS62130 тримає стабільні 3.3V для USB/JTAG логіки.</div></div>
+      <div class="dk-boot-step"><div class="dk-boot-step-num">02</div><div><b>SDM прокидається:</b> читає MSEL[2:0] з DIP-перемикача → визначає режим (спочатку постав JTAG-only, всі High).</div></div>
+      <div class="dk-boot-step"><div class="dk-boot-step-num">03</div><div><b>Перший bitstream через JTAG:</b> Quartus Programmer (бачить плату як USB-Blaster II завдяки прошитій EEPROM) → FT2232HQ Channel A (тактується власним 12MHz кварцом) → SN74AXC4T774 переводить 3.3V→1.8V → TCK/TMS/TDI/TDO на SDM → CONFIG_DONE LED загорається.</div></div>
+      <div class="dk-boot-step"><div class="dk-boot-step-num">04</div><div><b>Hello World на fabric:</b> найпростіший Verilog (кнопка→LED) для демонстрації, що логіка реально працює.</div></div>
+      <div class="dk-boot-step"><div class="dk-boot-step-num">05</div><div><b>HPS oscillator + LPDDR4:</b> підключаєш RAM, заводиш тактовий генератор → ARM Cortex-A55 готовий завантажувати U-Boot.</div></div>
+      <div class="dk-boot-step"><div class="dk-boot-step-num">06</div><div><b>Linux на HPS:</b> microSD з образом Yocto/Linux → FT2232H Channel B (UART) → бачиш консоль завантаження на ноутбуці.</div></div>
+      <div class="dk-boot-step"><div class="dk-boot-step-num">07</div><div><b>Перейти на QSPI:</b> переключаєш MSEL на Active Serial → записуєш бітстрім в MT25QU128 → плата вантажиться автономно без JTAG-кабелю.</div></div>
+    </div>
+
+    <div class="dk-checklist">
+      <div class="dk-checklist-title">▸ ЧЕК-ЛИСТ ПЕРЕД ЗАМОВЛЕННЯМ</div>
+      <div class="dk-check-item">Перевір <b>Early Power Estimator (EPE)</b> для Agilex 5E у Quartus — і Critical Link, і iWave прямо радять цей інструмент для розрахунку реального струму під твою конфігурацію A5EA007, перш ніж фіналізувати номінали TPS546D24A.</div>
+      <div class="dk-check-item">Звір власний BGA pinout A5EA007BB23BE6S з офіційними Pin Connection Guidelines (Agilex 5) — назви рейок (VCC, VCCP, VCCRCORE, VCCIO_HPS, VCCIO_SDM) повинні точно збігатись з конкретним device group твого пакету.</div>
+      <div class="dk-check-item">MSEL спочатку постав у режим <b>JTAG Only</b> (всі High) — найпростіший спосіб залити перший тестовий бітстрім без QSPI flash взагалі; QSPI підключаєш другим кроком для Active Serial режиму.</div>
+      <div class="dk-check-item">DA9062 I2C адреса в офіційних SOM варіюється (0x58 в одній ревізії iWave datasheet, 0x48 в іншій) — перевір актуальну версію для своєї ревізії чіпа перед розводкою I2C0.</div>
+      <div class="dk-check-item">Перед замовленням BGA-чіпів (LPDDR4, QSPI flash) перевір мінімальну партію і ball pitch — потрібен мінімум 6-шаровий стек PCB з контролем імпедансу для DDR-трас.</div>
+      <div class="dk-check-item">HVIO_ENABLE сигнал (як в Critical Link datasheet) — поки локальні живлення FPGA не стабілізувались, не подавай сигнали на user IO; використай цей пін для секвенування власної периферії.</div>
+      <div class="dk-check-item"><b>JTAG level-shift:</b> SN74AXC4T774 — направлений (direction-controlled) шифтер, тому йому треба DIR-пін, прив'язаний по логіці JTAG (TDI/TMS/TCK йдуть в FPGA, TDO йде назад) — звір з даташитом TI перед розводкою, неправильний напрямок = немає зв'язку.</div>
+      <div class="dk-check-item"><b>USB-C диференціальні пари D+/D-</b> від конектора до FT2232HQ: тримай 90Ω диференційний імпеданс, веди парою, без різких 90° поворотів — типова вимога для USB High-Speed, інакше підвисання enumeration.</div>
+      <div class="dk-check-item">Резистори зворотного зв'язку TPS546D24A та DA9062: бери 0.1-1% точність з низьким ТКО — похибка в пару відсотків на core rail (0.7-0.9V) означає реальний перегрів FPGA.</div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-text">Мінімальний DevKit · FPGA Phone · КПІ ФЕЛ КЕОА 2026</div>
+    <div class="footer-badge">v3.0 — FULLY VERIFIED</div>
+  </footer>
+</div>
+
 <div class="modal-bg" id="modal">
   <div class="modal">
     <div class="modal-header">
@@ -1204,69 +704,54 @@ footer{
     </div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Назва компонента *</label>
-          <input class="form-input" id="f-name" placeholder="Intel Agilex 5E">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Part Number</label>
-          <input class="form-input" id="f-part" placeholder="A5EA007BB23BE6S">
-        </div>
+        <div class="form-group"><label class="form-label">Назва компонента *</label><input class="form-input" id="f-name" placeholder="Intel Agilex 5E"></div>
+        <div class="form-group"><label class="form-label">Part Number</label><input class="form-input" id="f-part" placeholder="A5EA007BB23BE6S"></div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Категорія</label>
+      <div class="form-row" id="wrap-cat-status">
+        <div class="form-group" id="wrap-cat"><label class="form-label">Категорія</label>
           <select class="form-select" id="f-cat">
-            <option value="fpga">FPGA / SoC</option>
-            <option value="memory">Пам'ять</option>
-            <option value="rf">RF / 5G</option>
-            <option value="display">Дисплей</option>
-            <option value="power">Живлення</option>
-            <option value="sensor">Сенсори</option>
-            <option value="other">Інше</option>
+            <option value="fpga">FPGA / SoC</option><option value="memory">Пам'ять</option><option value="rf">RF / 5G</option>
+            <option value="display">Дисплей</option><option value="power">Живлення</option><option value="sensor">Сенсори</option><option value="other">Інше</option>
           </select>
         </div>
-        <div class="form-group">
-          <label class="form-label">Статус</label>
+        <div class="form-group" id="wrap-status"><label class="form-label">Статус</label>
           <select class="form-select" id="f-status">
-            <option value="ok">✓ Підтверджено / Замовлено</option>
-            <option value="info">◎ Найкращий вибір</option>
-            <option value="warn">⚠ Є питання</option>
-            <option value="bad">✗ Проблеми</option>
+            <option value="ok">✓ Підтверджено / Замовлено</option><option value="info">◎ Найкращий вибір</option>
+            <option value="warn">⚠ Є питання</option><option value="bad">✗ Проблеми</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row" id="wrap-dk-meta" style="display:none">
+        <div class="form-group"><label class="form-label">Блок DevKit</label>
+          <select class="form-select" id="f-dk-group">
+            <option value="1">01 — Ядро (FPGA)</option>
+            <option value="2">02 — Живлення</option>
+            <option value="3">03 — Пам'ять</option>
+            <option value="4">04 — Тактування</option>
+            <option value="5">05 — Програмування / JTAG</option>
+            <option value="6">06 — Індикація / GPIO</option>
+            <option value="7">07 — USB-C / пасивні</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Статус</label>
+          <select class="form-select" id="f-dk-status">
+            <option value="have">✓ Є в базі</option>
+            <option value="need">+ Треба додати</option>
           </select>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Ціна ($)</label>
-          <input class="form-input" id="f-price" type="number" step="0.01" placeholder="0.00">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Кількість</label>
-          <input class="form-input" id="f-qty" type="number" value="1" min="1">
-        </div>
+        <div class="form-group"><label class="form-label">Ціна ($)</label><input class="form-input" id="f-price" type="number" step="0.01" placeholder="0.00"></div>
+        <div class="form-group" id="wrap-qty"><label class="form-label">Кількість</label><input class="form-input" id="f-qty" type="number" value="1" min="1"></div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Теги (через кому)</label>
-        <input class="form-input" id="f-tags" placeholder="BGA, SoC, ARM, FPGA">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Посилання для покупки</label>
-        <input class="form-input" id="f-buy" placeholder="https://...">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Посилання на даташит</label>
-        <input class="form-input" id="f-ds" placeholder="https://...">
-      </div>
-      <div class="form-group">
-        <label class="form-label">URL зображення (опційно)</label>
-        <input class="form-input" id="f-img" placeholder="https://...">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Нотатки / проблеми</label>
-        <textarea class="form-textarea" id="f-notes" placeholder="Опис, статус замовлення, проблеми..."></textarea>
-      </div>
+      <div class="form-group" id="wrap-tags"><label class="form-label">Теги (через кому)</label><input class="form-input" id="f-tags" placeholder="BGA, SoC, ARM, FPGA"></div>
+      <div class="form-group" id="wrap-spec" style="display:none"><label class="form-label">Технічна примітка (spec)</label><input class="form-input" id="f-spec" placeholder="напр. 3A, fixed output, push-pull"></div>
+      <div class="form-group"><label class="form-label">Посилання для покупки</label><input class="form-input" id="f-buy" placeholder="https://..."></div>
+      <div class="form-group"><label class="form-label">Посилання на даташит</label><input class="form-input" id="f-ds" placeholder="https://..."></div>
+      <div class="form-group" id="wrap-img"><label class="form-label">URL зображення (опційно)</label><input class="form-input" id="f-img" placeholder="https://..."></div>
+      <div class="form-group"><label class="form-label" id="lbl-notes">Нотатки / проблеми</label><textarea class="form-textarea" id="f-notes" placeholder="Опис, статус замовлення, проблеми..."></textarea></div>
       <input type="hidden" id="f-edit-id">
+      <input type="hidden" id="f-mode" value="elements">
     </div>
     <div class="modal-footer">
       <button class="btn danger" onclick="deleteCurrentElement()" id="btn-delete" style="display:none">Видалити</button>
@@ -1278,36 +763,25 @@ footer{
 
 <div class="toast" id="toast"></div>
 
-<!-- THREE.JS NOKIA 3250 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
   const canvas = document.getElementById('phone-canvas');
   if(!canvas) return;
-
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
   camera.position.set(0, 0.3, 12);
   camera.lookAt(0, 0.3, 0);
-
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.2;
-
-  function resize(){
-    const w=canvas.parentElement.clientWidth, h=canvas.parentElement.clientHeight;
-    camera.aspect=w/h; camera.updateProjectionMatrix();
-    renderer.setSize(w,h);
-  }
+  function resize(){const w=canvas.parentElement.clientWidth, h=canvas.parentElement.clientHeight;camera.aspect=w/h; camera.updateProjectionMatrix();renderer.setSize(w,h);}
   window.addEventListener('resize',resize); resize();
-
-  // ── BG ──
   const bgC=document.createElement('canvas'); bgC.width=512; bgC.height=512;
   const bgX=bgC.getContext('2d');
   const bgTex=new THREE.CanvasTexture(bgC);
-  const bgMesh=new THREE.Mesh(new THREE.PlaneGeometry(40,30),
-    new THREE.MeshBasicMaterial({map:bgTex,depthWrite:false}));
+  const bgMesh=new THREE.Mesh(new THREE.PlaneGeometry(40,30), new THREE.MeshBasicMaterial({map:bgTex,depthWrite:false}));
   bgMesh.position.z=-12; scene.add(bgMesh);
   function drawBG(t){
     const g=bgX.createRadialGradient(256,256,0,256,256,360);
@@ -1324,16 +798,12 @@ footer{
     }
     bgX.globalAlpha=1;
   }
-
-  // ── PARTICLES ──
   const N=300,PP=new Float32Array(N*3),PC=new Float32Array(N*3);
   for(let i=0;i<N;i++){PP[i*3]=(Math.random()-.5)*26;PP[i*3+1]=(Math.random()-.5)*18;PP[i*3+2]=(Math.random()-.5)*10-4;PC[i*3+2]=1;PC[i*3+1]=0.5+Math.random()*0.3;}
   const pGeo=new THREE.BufferGeometry();
   pGeo.setAttribute('position',new THREE.BufferAttribute(PP,3));
   pGeo.setAttribute('color',new THREE.BufferAttribute(PC,3));
   scene.add(new THREE.Points(pGeo,new THREE.PointsMaterial({size:0.03,vertexColors:true,transparent:true,opacity:0.5,depthWrite:false})));
-
-  // ── SCREEN CANVAS ──
   const sC=document.createElement('canvas'); sC.width=256; sC.height=320;
   const sX=sC.getContext('2d'); const sTex=new THREE.CanvasTexture(sC);
   let sPage=0,sLast=0;
@@ -1346,27 +816,21 @@ footer{
   function drawScr(t,pi){
     const w=256,h=320,p=sPages[pi%4];
     sX.fillStyle='#001020'; sX.fillRect(0,0,w,h);
-    // scanlines
     sX.fillStyle='rgba(0,200,255,0.012)'; for(let y=0;y<h;y+=3) sX.fillRect(0,y,w,1);
-    // status bar
     sX.fillStyle='rgba(0,90,200,0.5)'; sX.fillRect(0,0,w,20);
     const ts=new Date().getHours().toString().padStart(2,'0')+':'+new Date().getMinutes().toString().padStart(2,'0');
     sX.fillStyle='rgba(180,220,255,0.9)'; sX.font='bold 10px monospace'; sX.textAlign='center'; sX.fillText(ts,w/2,13); sX.textAlign='left';
-    // battery
     sX.strokeStyle='rgba(0,200,255,0.8)'; sX.lineWidth=1; sX.strokeRect(w-25,4,16,9);
     sX.fillStyle='rgba(0,200,255,0.8)'; sX.fillRect(w-9,6,2,5);
     sX.fillStyle='rgba(0,220,100,0.9)'; sX.fillRect(w-24,5,11,7);
-    // Nokia logo
     sX.shadowColor='#00C8FF'; sX.shadowBlur=12;
     sX.fillStyle='rgba(0,210,255,0.95)'; sX.font='bold 20px monospace'; sX.textAlign='center';
     sX.fillText('NOKIA',w/2,52); sX.shadowBlur=0;
     sX.font='7px monospace'; sX.fillStyle='rgba(0,150,200,0.7)'; sX.fillText('Connecting People',w/2,66); sX.textAlign='left';
     sX.fillStyle='rgba(0,200,255,0.2)'; sX.fillRect(12,72,w-24,1);
-    // page title
     sX.fillStyle='rgba(255,255,255,0.95)'; sX.font='bold 12px monospace'; sX.textAlign='center'; sX.fillText(p.t,w/2,92);
     sX.fillStyle='rgba(0,200,255,0.7)'; sX.font='7px monospace'; sX.fillText(p.s,w/2,105); sX.textAlign='left';
     sX.fillStyle='rgba(0,200,255,0.15)'; sX.fillRect(12,110,w-24,1);
-    // list
     p.l.forEach((line,i)=>{
       const ly=126+i*22;
       sX.fillStyle='rgba(0,200,255,0.6)'; sX.font='8px monospace'; sX.fillText('▸',12,ly);
@@ -1374,18 +838,14 @@ footer{
       sX.fillStyle=Math.sin(t*3+i)>0?'rgba(0,220,100,0.9)':'rgba(0,70,40,0.5)';
       sX.beginPath(); sX.arc(w-16,ly-3,3,0,Math.PI*2); sX.fill();
     });
-    // bottom nav bar
     sX.fillStyle='rgba(0,60,170,0.45)'; sX.fillRect(0,h-24,w,24);
     sX.fillStyle='rgba(0,200,255,0.6)'; sX.font='8px monospace';
     sX.textAlign='left'; sX.fillText('Menu',10,h-9);
     sX.textAlign='right'; sX.fillText('Back',w-10,h-9);
     sX.textAlign='center'; sX.fillStyle='rgba(0,200,255,0.8)'; sX.fillText('●',w/2,h-9);
-    // dots
     for(let i=0;i<4;i++){const dx=w/2-15+i*10;sX.fillStyle=i===pi%4?'rgba(0,200,255,0.9)':'rgba(0,100,150,0.4)';sX.beginPath();sX.arc(dx,h-34,i===pi%4?3:2,0,Math.PI*2);sX.fill();}
     sX.textAlign='left';
   }
-
-  // ── MATERIALS ──
   const mBody  = new THREE.MeshPhysicalMaterial({color:0x07090F,metalness:0.1,roughness:0.08,clearcoat:1,clearcoatRoughness:0.04});
   const mMatte = new THREE.MeshStandardMaterial({color:0x070A14,metalness:0.05,roughness:0.8});
   const mSilv  = new THREE.MeshPhysicalMaterial({color:0x6A8AAA,metalness:0.96,roughness:0.06});
@@ -1399,254 +859,114 @@ footer{
   const mKN    = new THREE.MeshPhysicalMaterial({color:0x0A1520,metalness:0.15,roughness:0.6,clearcoat:0.5});
   const mKB    = new THREE.MeshPhysicalMaterial({color:0x081845,metalness:0.3,roughness:0.4,clearcoat:0.6,emissive:0x040D25,emissiveIntensity:0.12});
   const mScr   = new THREE.MeshStandardMaterial({map:sTex,roughness:0.02,emissiveMap:sTex,emissive:new THREE.Color(1,1,1),emissiveIntensity:2.2});
-
-  // ── BOX HELPER ──
-  // All positions are ABSOLUTE center of box
-  function box(w,h,d,mat,x,y,z){
-    const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);
-    m.position.set(x,y,z); m.castShadow=true; return m;
-  }
-  // Cylinder with axis along Z (pointing toward camera) — easiest for buttons/lenses
-  function cyl(r,h,seg,mat,x,y,z){
-    const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg),mat);
-    m.position.set(x,y,z); m.rotation.x=Math.PI/2; m.castShadow=true; return m;
-  }
-  // Cylinder with axis along Y (vertical)
-  function cylY(r,h,seg,mat,x,y,z){
-    const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg),mat);
-    m.position.set(x,y,z); m.castShadow=true; return m;
-  }
-  // Cylinder with axis along X
-  function cylX(r,h,seg,mat,x,y,z){
-    const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg),mat);
-    m.position.set(x,y,z); m.rotation.z=Math.PI/2; m.castShadow=true; return m;
-  }
-  // Torus flat in XY plane (ring visible from front)
-  function ring(r,t,mat,x,y,z){
-    const m=new THREE.Mesh(new THREE.TorusGeometry(r,t,10,36),mat);
-    m.position.set(x,y,z); m.rotation.x=Math.PI/2; return m;
-  }
-
-  // ════════════════════════════════════════
-  //  NOKIA 3250 — scale 1:20
-  //  W=2.5   D=0.99   H_T=2.85  H_B=2.35
-  //  Hinge at Y=0
-  //  TOP:  Y=0 to Y=+2.85   center Y=+1.425
-  //  BOT:  Y=0 to Y=-2.35   center Y=-1.175
-  //  Front face: Z=+0.495    Back face: Z=-0.495
-  // ════════════════════════════════════════
+  function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z); m.castShadow=true; return m;}
+  function cyl(r,h,seg,mat,x,y,z){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg),mat);m.position.set(x,y,z); m.rotation.x=Math.PI/2; m.castShadow=true; return m;}
+  function cylY(r,h,seg,mat,x,y,z){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg),mat);m.position.set(x,y,z); m.castShadow=true; return m;}
+  function cylX(r,h,seg,mat,x,y,z){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg),mat);m.position.set(x,y,z); m.rotation.z=Math.PI/2; m.castShadow=true; return m;}
   const W=2.5, D=0.99, HT=3.30, HB=1.80;
-  const ZF=D/2;   // = 0.495  front face
-  const ZB=-D/2;  // = -0.495 back face
-
-  // ─── TOP GROUP ───
+  const ZF=D/2; const ZB=-D/2;
   const TOP=new THREE.Group();
-
-  // Main body (center at HT/2 = 1.425)
   TOP.add(box(W, HT, D, mBody,  0, HT/2, 0));
-
-  // Round top cap: cylinder lying along X, at y=HT
   TOP.add(cylX(D/2, W, 32, mBody,  0, HT, 0));
-
-  // Side rails
   TOP.add(box(0.05, HT, D+0.02, mSilv,  -W/2-0.025, HT/2, 0));
   TOP.add(box(0.05, HT, D+0.02, mSilv,   W/2+0.025, HT/2, 0));
-
-  // Blue stripe top (y=HT-0.11)
   TOP.add(box(W-0.06, 0.09, D+0.01, mBlue, 0, HT-0.11, 0));
-
-  // Neon edge lines front corners
   TOP.add(box(0.012, HT*0.5, 0.012, mNeon,  -W/2-0.006, HT*0.55, ZF+0.003));
   TOP.add(box(0.012, HT*0.5, 0.012, mNeon,   W/2+0.006, HT*0.55, ZF+0.003));
-
-  // Earpiece at y=HT-0.25
   TOP.add(box(1.05, 0.06, 0.04, mMatte,  0, HT-0.25, ZF+0.004));
   for(let i=-2;i<=2;i++) TOP.add(box(0.46,0.02,0.02, mDark, i*0.18, HT-0.25, ZF+0.016));
-
-  // Front camera (left side, near earpiece) — cyl along Z
   TOP.add(cyl(0.044, 0.024, 14, mLens,  -0.74, HT-0.25, ZF+0.007));
   TOP.add(cyl(0.014, 0.018, 10, mGreen, -0.90, HT-0.25, ZF+0.014));
-
-  // ── SCREEN ──
-  // Screen occupies from y=0.52 to y=HT-0.45 = y=0.52..2.40  center=1.46 height=1.88
-  // Actually let's compute: screen center = (0.52+2.40)/2 = 1.46, height = 1.88
-  const SCY = 1.72;    // screen center Y
-  const SCH = 2.24;    // screen height
-  const SCW = 1.90;    // screen width (< W=2.5, leaving bezel)
-  // Bezel — dark, flush with body (z=ZF-0.005 means slightly recessed)
+  const SCY = 1.72, SCH = 2.24, SCW = 1.90;
   TOP.add(box(SCW+0.20, SCH+0.18, 0.006, mDark,   0, SCY, ZF-0.012));
-  // Screen surface — ON the body face
   TOP.add(box(SCW, SCH, 0.010, mScr,  0, SCY, ZF+0.025));
-  // Screen glow layer — far enough from screen to not z-fight, depthWrite=false
   const glowMat=new THREE.MeshBasicMaterial({color:0x0055AA,transparent:true,opacity:0.10,depthWrite:false});
-  // Glass — furthest forward, transparent, depthWrite=false
   const glassMat=new THREE.MeshPhysicalMaterial({color:0x000810,roughness:0,transmission:0.88,ior:1.5,transparent:true,depthWrite:false,opacity:0.9});
   TOP.add(box(SCW+0.04, SCH+0.04, 0.006, glassMat,  0, SCY, ZF+0.040));
-
-  // ── NAV CLUSTER — center at y=0.30 (bottom strip of TOP, above hinge) ──
   const NY=0.42;
-  // D-pad ring (flat, visible from front → rotation.x=PI/2 already in ring())
   TOP.add(cyl(0.36, 0.028, 32, mDark, 0, NY, ZF+0.018));
-  // Arrow keys on ring
-  [[0,0.32],[0,-0.32],[0.32,0],[-0.32,0]].forEach(([ax,ay])=>
-    TOP.add(box(0.09,0.09,0.044, mNeon,  ax, NY+ay, ZF+0.028))
-  );
-  // OK button center — cyl along Z
+  [[0,0.32],[0,-0.32],[0.32,0],[-0.32,0]].forEach(([ax,ay])=>TOP.add(box(0.09,0.09,0.044, mNeon,  ax, NY+ay, ZF+0.028)));
   TOP.add(cyl(0.130, 0.055, 20, mBlue,  0, NY, ZF+0.024));
   TOP.add(cyl(0.075, 0.028, 16, mNeon,  0, NY, ZF+0.044));
-
-  // Softkeys left/right of nav
   [-0.80, 0.80].forEach(sx=>{
     TOP.add(box(0.46, 0.16, 0.058, mKB,  sx, NY, ZF+0.010));
     TOP.add(box(0.44, 0.012, 0.010, mNeon, sx, NY+0.082, ZF+0.042));
     TOP.add(box(0.44, 0.012, 0.010, mNeon, sx, NY-0.082, ZF+0.042));
   });
-
-  // ── CALL/END/XM ROW — y=0.08 (inside TOP, above hinge) ──
   const BY=0.08;
-  // Green call left
   TOP.add(box(0.46,0.16,0.058, new THREE.MeshPhysicalMaterial({color:0x002010,metalness:.3,roughness:.4,clearcoat:.7,emissive:0x003018,emissiveIntensity:0.35}), -0.80, BY, ZF+0.010));
   TOP.add(box(0.15,0.026,0.012, mGreen, -0.80, BY, ZF+0.046));
-  // Red end right
   TOP.add(box(0.46,0.16,0.058, new THREE.MeshPhysicalMaterial({color:0x1A0008,metalness:.3,roughness:.4,clearcoat:.7,emissive:0x250010,emissiveIntensity:0.3}), 0.80, BY, ZF+0.010));
   TOP.add(box(0.15,0.026,0.012, mRed, 0.80, BY, ZF+0.046));
-  // XpressMusic center
   TOP.add(box(0.28,0.16,0.058, new THREE.MeshPhysicalMaterial({color:0x001D70,metalness:.4,roughness:.3,clearcoat:.8,emissive:0x001040,emissiveIntensity:0.4}), 0, BY, ZF+0.010));
   TOP.add(box(0.11,0.026,0.012, mNeon, 0, BY, ZF+0.046));
-
-  // ── HINGE (at y=0) ──
-  // hinge — no visible bar
-
-  // ── BACK of TOP ──
-  // Nokia logo bar
   TOP.add(box(0.80, 0.040, 0.018, mNeon,  0, HT*0.20, ZB-0.007));
-
-  // Power button right side of TOP
   TOP.add(box(0.056, 0.18, D*0.40, mRub, W/2+0.034, HT-0.52, 0));
   TOP.add(box(0.038, 0.10, D*0.35, mSilv, W/2+0.054, HT-0.48, 0));
-
-  // 3.5mm jack — top edge, cylY pointing up out of top
   TOP.add(cylY(0.056, 0.14, 12, mDark,  -0.62, HT+D/2-0.01, 0));
-
-  // ─── BOT GROUP ───
   const BOT=new THREE.Group();
-
-  // Main body (center at -HB/2 = -1.175)
   BOT.add(box(W, HB, D, mBody,  0, -HB/2, 0));
-
-  // Round bottom cap at y=-HB
   BOT.add(cylX(D/2, W, 32, mBody,  0, -HB, 0));
-
-  // Side rails
   BOT.add(box(0.05, HB, D+0.02, mSilv,  -W/2-0.025, -HB/2, 0));
   BOT.add(box(0.05, HB, D+0.02, mSilv,   W/2+0.025, -HB/2, 0));
-
-  // Blue accent stripe
   BOT.add(box(W-0.06, 0.08, D+0.01, mBlue,  0, -HB+0.10, 0));
-
-  // Neon edges front
   BOT.add(box(0.012, HB*0.6, 0.012, mNeon,  -W/2-0.006, -HB*0.42, ZF+0.003));
   BOT.add(box(0.012, HB*0.6, 0.012, mNeon,   W/2+0.006, -HB*0.42, ZF+0.003));
-
-  // ── KEYPAD 3×4 ──
-  // Keypad area: y from -0.25 to -1.55, so 4 rows at dy=0.40 apart
-  // Keys sit ON front face: z center = ZF + key_thickness/2
-  const KTH=0.068; // key thickness
-  const KZ=ZF+KTH/2+0.005; // key front center z
+  const KTH=0.068; const KZ=ZF+KTH/2+0.005;
   const kRows=[-0.28,-0.64,-1.00,-1.36];
   const kCols=[-0.78, 0, 0.78];
   const kC=[[mKB,mKN,mKN],[mKN,mKB,mKN],[mKN,mKN,mKB],[mKN,mKB,mKN]];
   kRows.forEach((ky,ri)=>{
     kCols.forEach((kx,ci)=>{
       const km=kC[ri][ci];
-      // Key base
       BOT.add(box(0.48, 0.26, KTH, km,  kx, ky, KZ));
-      // Key cap inset
-      BOT.add(box(0.40, 0.18, 0.025,
-        new THREE.MeshPhysicalMaterial({color:km===mKB?0x081840:0x0A1628,metalness:0.12,roughness:0.5,clearcoat:0.65}),
-        kx, ky, KZ+KTH/2+0.008));
-      // Neon top accent
+      BOT.add(box(0.40, 0.18, 0.025, new THREE.MeshPhysicalMaterial({color:km===mKB?0x081840:0x0A1628,metalness:0.12,roughness:0.5,clearcoat:0.65}), kx, ky, KZ+KTH/2+0.008));
       BOT.add(box(0.40, 0.014, 0.010, mNeon, kx, ky+0.115, KZ+KTH/2+0.010));
     });
   });
-
-  // ── VOLUME (right side BOT) ──
   BOT.add(box(0.056, 0.16, D*0.46, mRub, W/2+0.033, -0.36, 0));
   BOT.add(box(0.036, 0.075, D*0.40, mSilv, W/2+0.054, -0.28, 0));
   BOT.add(box(0.036, 0.075, D*0.40, mSilv, W/2+0.054, -0.46, 0));
   BOT.add(box(0.036, 0.014, D*0.40, mNeon, W/2+0.054, -0.37, 0));
-
-  // ── SHUTTER (right side BOT) ──
   BOT.add(box(0.056, 0.14, D*0.42, mBlue, W/2+0.033, -0.70, 0));
   BOT.add(box(0.036, 0.11, D*0.38, mNeon, W/2+0.054, -0.70, 0));
-
-  // ── microSD (left side BOT) ──
   BOT.add(box(0.056, 0.26, D*0.36, mRub, -W/2-0.033, -0.60, 0));
-
-  // ── BOTTOM CONNECTORS ──
   BOT.add(box(0.46, 0.08, 0.10, mDark,  0,    -HB-0.004, 0));
   BOT.add(box(0.16, 0.08, 0.10, mDark,  0.74, -HB-0.004, 0));
-  // 3.5mm bottom-left
   BOT.add(cylY(0.052, 0.10, 12, mDark,   -0.74, -HB-0.004, 0));
   BOT.add(cylY(0.030, 0.12, 10, mSilv,   -0.74, -HB-0.004, 0));
-
-  // ── BACK CAMERA (Nokia 3250 cam is on BOT back) ──
   const CX=0.62, CY=-1.32;
-  // Camera housing — raised bump on back
   BOT.add(box(0.52, 0.52, 0.055, mDark,   CX, CY, ZB-0.014));
   BOT.add(box(0.48, 0.48, 0.008, mSilv,   CX, CY, ZB-0.040));
-  // Outer ring — thin silver circle
   BOT.add(cyl(0.20, 0.012, 32, mSilv,  CX, CY, ZB-0.046));
-  // Lens
   BOT.add(cyl(0.13, 0.040, 32, mLens,  CX, CY, ZB-0.052));
-  // Inner neon ring
   BOT.add(cyl(0.15, 0.006, 32, mNeon,  CX, CY, ZB-0.044));
-  // Tiny center reflection
-  BOT.add(cyl(0.04, 0.012, 16,
-    new THREE.MeshStandardMaterial({color:0xCCEEFF,emissive:0x88CCFF,emissiveIntensity:0.4}),
-    CX, CY, ZB-0.055));
-  // Flash LED — small, to the left of lens
-  BOT.add(cyl(0.055, 0.022, 12,
-    new THREE.MeshStandardMaterial({color:0xFFEE88,emissive:0xFFDD44,emissiveIntensity:0.8}),
-    CX-0.32, CY+0.18, ZB-0.042));
+  BOT.add(cyl(0.04, 0.012, 16, new THREE.MeshStandardMaterial({color:0xCCEEFF,emissive:0x88CCFF,emissiveIntensity:0.4}), CX, CY, ZB-0.055));
+  BOT.add(cyl(0.055, 0.022, 12, new THREE.MeshStandardMaterial({color:0xFFEE88,emissive:0xFFDD44,emissiveIntensity:0.8}), CX-0.32, CY+0.18, ZB-0.042));
   BOT.add(cyl(0.045, 0.010, 12, mSilv, CX-0.32, CY+0.18, ZB-0.046));
-
-  // ── BATTERY COVER ──
   BOT.add(box(W-0.32, HB*0.80, 0.030, mRub, 0, -HB/2, ZB-0.013));
   for(let i=-2;i<=2;i++) BOT.add(box(W-0.44,0.022,0.010, mMatte, 0, -HB*0.5+i*0.28, ZB-0.026));
   BOT.add(box(0.85, 0.040, 0.012, mNeon, 0, -HB*0.70, ZB-0.028));
-
-  // ── ASSEMBLE ──
   const botPivot=new THREE.Group();
   botPivot.add(BOT);
-
   const phone=new THREE.Group();
   phone.add(TOP);
   phone.add(botPivot);
   phone.rotation.set(0.08,-0.15,0);
   scene.add(phone);
-
-  // Screen SpotLight — направлений вперед від екрана
   const scrSpot=new THREE.SpotLight(0x00BBFF, 35, 55, Math.PI/5, 0.18, 1.2);
   scrSpot.position.set(0, SCY, ZF+1);
   scrSpot.target.position.set(0, SCY, ZF+30);
-  phone.add(scrSpot);
-  phone.add(scrSpot.target);
-  // Wide ambient glow від екрана
+  phone.add(scrSpot); phone.add(scrSpot.target);
   const scrLight=new THREE.PointLight(0x0088CC, 6, 30);
   scrLight.position.set(0, SCY, ZF+2);
   phone.add(scrLight);
-  const scrLight2=scrLight; // alias for animate
-
-  // ── LIGHTS ──
   scene.add(new THREE.AmbientLight(0x040810,2.5));
   const kL=new THREE.PointLight(0x00C8FF,5.5,22); kL.position.set(-4,5,7); kL.castShadow=true; kL.shadow.mapSize.set(512,512); scene.add(kL);
   const fL=new THREE.PointLight(0x0040FF,3.0,18); fL.position.set(5,-2,6); scene.add(fL);
   const rL=new THREE.PointLight(0x001430,4.0,16); rL.position.set(0,3,-8); scene.add(rL);
   const bL=new THREE.PointLight(0x00FFAA,0.9,12); bL.position.set(0,-6,3); scene.add(bL);
   const hS=new THREE.SpotLight(0x00C8FF,3.0,14,Math.PI/5,0.35); hS.position.set(3,0,5); hS.target.position.set(0,0,0); scene.add(hS); scene.add(hS.target);
-
-  // ── INTERACTION ──
   let isDrag=false,prev={x:0,y:0},rotT={x:0.08,y:-0.15},rotC={x:0.08,y:-0.15},twMode=0,twTgt=0,twCur=0,autoRot=true;
   canvas.style.cursor='grab';
   const dn=(x,y)=>{isDrag=true;autoRot=false;prev={x,y};canvas.style.cursor='grabbing';const h=document.getElementById('phone-hint');if(h)h.style.opacity='0';};
@@ -1657,8 +977,6 @@ footer{
   window.addEventListener('touchend',()=>{isDrag=false;canvas.style.cursor='grab';});
   window.addEventListener('touchmove',e=>{if(!isDrag)return;rotT.y+=(e.touches[0].clientX-prev.x)*0.009;rotT.x+=(e.touches[0].clientY-prev.y)*0.007;rotT.x=Math.max(-0.75,Math.min(0.75,rotT.x));prev={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
   window.nokiaTwist=function(){twMode=(twMode+1)%3;twTgt=twMode*(Math.PI/2);const modes=['📱 PHONE MODE','📷 CAMERA 90°','🎵 MUSIC 180°'];const h=document.getElementById('phone-hint');if(h){h.textContent=modes[twMode];h.style.opacity='1';setTimeout(()=>h.style.opacity='0',2000);}};
-
-  // ── ANIMATE ──
   const clk=new THREE.Clock();
   function animate(){
     requestAnimationFrame(animate);
@@ -1690,116 +1008,123 @@ footer{
 })();
 </script>
 
-
-
 <script>
-// ══════════ DATA ══════════
 const STORAGE_KEY = 'diploma_elements_v3';
 const TL_KEY = 'diploma_timeline_v2';
-
 const STATUS_MAP = {
   ok:   {cls:'status-ok',   label:'✓ Підтверджено'},
   info: {cls:'status-info', label:'◎ Найкращий вибір'},
   warn: {cls:'status-warn', label:'⚠ Є питання'},
   bad:  {cls:'status-bad',  label:'✗ Проблеми'},
 };
-const CAT_NAMES = {
-  fpga:'FPGA / SoC', memory:"Пам'ять", rf:'RF / 5G',
-  display:'Дисплей', power:'Живлення', sensor:'Сенсори', other:'Інше'
-};
-
+const CAT_NAMES = { fpga:'FPGA / SoC', memory:"Пам'ять", rf:'RF / 5G', display:'Дисплей', power:'Живлення', sensor:'Сенсори', other:'Інше' };
 let elements = [];
 let timeline = [];
 
-// Підтягуємо дані з data.json при старті
 async function loadFromGitHub() {
+  // 1) data.json — елементна база + таймлайн
   try {
-    const res = await fetch('./data.json?t=' + Date.now()); // ?t= щоб не кешувалось
+    const res = await fetch('./data.json?t=' + Date.now());
     if (!res.ok) throw new Error('fetch failed');
     const data = await res.json();
     if (data.elements) elements = data.elements;
     if (data.timeline) timeline = data.timeline;
   } catch(e) {
-    // Fallback на localStorage якщо немає файлу
     elements = JSON.parse(localStorage.getItem(STORAGE_KEY)||'null') || defaultElements();
     timeline = JSON.parse(localStorage.getItem(TL_KEY)||'null') || defaultTimeline();
   }
+
+  // 2) data2.json — devkit для 3-ї сторінки
+  // Якщо в localStorage вже є збережені зміни — вони мають пріоритет
+  const savedDevkit = JSON.parse(localStorage.getItem('diploma_devkit_v3')||'null');
+  if (savedDevkit && savedDevkit.groups) {
+    DEVKIT_DATA.groups = savedDevkit.groups;
+  } else {
+    // localStorage порожній — підтягуємо з data2.json
+    try {
+      const res2 = await fetch('./data2.json?t=' + Date.now());
+      if (!res2.ok) throw new Error('data2 not found');
+      const data2 = await res2.json();
+      if (data2.devkit && data2.devkit.groups) {
+        DEVKIT_DATA.groups = {};
+        Object.keys(data2.devkit.groups).forEach(k => {
+          DEVKIT_DATA.groups[k] = data2.devkit.groups[k];
+        });
+        saveDevkit(); // зберігаємо в localStorage для наступних відкрить
+      }
+    } catch(e) {
+      console.warn('data2.json не знайдено — використовуються вбудовані дані');
+    }
+  }
+
   renderTimeline();
   renderElements();
+  renderDevkit();
 }
 let currentFilter = 'all';
-
-function save(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(elements));
-  document.getElementById('last-updated').textContent = 'ОНОВЛЕНО: ' + new Date().toLocaleTimeString('uk').toUpperCase();
-}
+function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(elements)); document.getElementById('last-updated').textContent = 'ОНОВЛЕНО: ' + new Date().toLocaleTimeString('uk').toUpperCase(); }
 function saveTL(){ localStorage.setItem(TL_KEY, JSON.stringify(timeline)); }
 
 function defaultElements(){
   return [
-    {id:1,name:'Intel Agilex 5E SoC FPGA',part:'A5EA007BB23BE6S',cat:'fpga',status:'info',price:94,qty:1,
-     tags:['BGA','SoC','69KLE','ARM A55'],
+    {id:1,name:'Intel Agilex 5E SoC FPGA',part:'A5EA007BB23BE6S',cat:'fpga',status:'bad',price:94,qty:1,
+     tags:['BGA-B32A','SoC','69KLE','ARM A55/A76'],
      buy:'https://www.digikey.be/en/products/detail/altera/A5EA007BB23BE6S/28118578',
-     ds:'',img:'',notes:'69K Logic Elements. ARM Cortex-A55 HPS. Замовляти через DigiKey BE.'},
-    {id:2,name:'Micron LPDDR5 1GB',part:'MT53E1G32D4NQ-046-WT-F-TR',cat:'memory',status:'ok',price:30,qty:1,
-     tags:['LPDDR5','BGA','1GB'],
+     ds:'https://docs.altera.com/r/docs/762191/current/agilextm-5-fpgas-and-socs-device-overview/key-features-and-innovations-in-agilextm-5-fpgas-and-socs',
+     img:'',notes:'69K Logic Elements. ARM Cortex-A55/A76 HPS. Довга доставка — реєструватись через викладача в Altera University Program.'},
+    {id:2,name:'DA9062 PMIC + RTC',part:'DA9062-56AM1',cat:'power',status:'ok',price:4.21,qty:1,
+     tags:['PMIC','4xBuck','4xLDO','I2C 0x58'],
+     buy:'https://www.digikey.com/en/products/detail/renesas-electronics-corporation/DA9062-56AM1/18717046',
+     ds:'https://www.alldatasheet.com/datasheet-pdf/pdf/1588721/RENESAS/DA9062.html',
+     img:'',notes:'Той самий чіп що в офіційному iWave SOM. Периферійне/IO живлення, НЕ для core (тільки VCCRCORE 1.2V periphery rail). Потребує кварц 32.768kHz для RTC.'},
+    {id:3,name:'TPS546D24A — SmartVID Core Regulator',part:'TPS546D24ARVFR',cat:'power',status:'info',price:6.5,qty:1,
+     tags:['PMBus','SmartVID','20A','Core 0.7-0.9V'],
+     buy:'https://www.digikey.com/en/products/detail/texas-instruments/TPS546D24ARVFR/5039745',
+     ds:'',img:'',notes:'Справжній core regulator з PMBus підтримкою SmartVID — FPGA сама виставляє напругу через SDM команди. Заміняє звичайний adjustable buck для core rail. Резистори зворотного зв\'язку — 1% точність.'},
+    {id:4,name:'MT25QU128 — QSPI Config Flash',part:'MT25QU128ABA1EW7-0SIT',cat:'memory',status:'ok',price:7.83,qty:1,
+     tags:['QSPI','128Mbit','Active Serial'],
+     buy:'https://www.digikey.com/en/products/detail/micron-technology-inc/MT25QU128ABA1EW7-0SIT/6595530',
+     ds:'',img:'',notes:'Той самий чіп що в Terasic DevKit. Перший блок FSBL/бітстріму SDM читає звідси.'},
+    {id:5,name:'LPDDR4 1GB для HPS',part:'MT53E1G32D4NQ-046-WT-F-TR',cat:'memory',status:'info',price:13,qty:1,
+     tags:['LPDDR4','BGA200','0.5mm pitch'],
      buy:'https://www.digikey.com/en/products/detail/micron-technology-inc/MT53E1G32D4NQ-046-WT-F-TR/17628678',
-     ds:'',img:'',notes:'LPDDR5 для HPS. Controlled impedance для DDR трас.'},
-    {id:3,name:'NISIN AMOLED 2.4" + Touch',part:'NS240DV4501AZ02',cat:'display',status:'ok',price:55,qty:1,
-     tags:['AMOLED','2.4"','450x600','311PPI','MIPI','Touch'],
-     buy:'https://www.nisindisplay.com',
-     ds:'',img:'',notes:'800cd/m² typ, 1200 min. DCI-P3 100%. Driver RM690B0. Touch через I2C. Molex 502598-4591.'},
-    {id:4,name:'NISIN AMOLED 1.64" нижній',part:'NSxxxxxx',cat:'display',status:'info',price:11.5,qty:1,
-     tags:['AMOLED','1.64"','280x456','MIPI'],
-     buy:'https://www.nisindisplay.com/product/280x456-amoled-lcd-module/',
-     ds:'',img:'',notes:'Нижній екран замість клавіатури. Замовити у того ж NISIN що і основний.'},
-    {id:5,name:'IMX586 AF 48MP Camera',part:'SF-OC586-POWER-B V1.1',cat:'sensor',status:'ok',price:34,qty:1,
-     tags:['48MP','MIPI CSI-2','4-Lane','AF','IMX586'],
-     buy:'https://sincerefirst.en.made-in-china.com',
-     ds:'',img:'',notes:'4-Lane MIPI CSI-2. Автофокус. Від SincereFirst — вже замовлено семпл.'},
-    {id:6,name:'Quectel RG255C-GL 5G',part:'RG255CGL00AB-4M2-M20AA',cat:'rf',status:'info',price:0,qty:1,
-     tags:['5G','RedCap','LGA','32x29mm','GNSS','Qualcomm X35'],
-     buy:'',ds:'',img:'',
-     notes:'5G RedCap 3GPP R17. 223Mbps DL. Вбудований GPS/GLONASS/Galileo/BeiDou. LGA 32x29x2.4mm. Окремий u-blox GPS не потрібен.'},
-    {id:7,name:'Murata WiFi6+BT5 Module',part:'LBEE5PK2AE-564',cat:'rf',status:'ok',price:15.89,qty:1,
-     tags:['WiFi6','BT5','SDIO','Murata'],
-     buy:'https://www.digikey.com/en/products/detail/murata-electronics/lbee5pk2ae-564/16374382',
-     ds:'',img:'',notes:'WiFi 2.4+5GHz, BT 5.0. SDIO→HPS.'},
-    {id:8,name:'TDK InvenSense ICM-42688-P',part:'ICM-42688-P',cat:'sensor',status:'ok',price:4.91,qty:1,
-     tags:['IMU','Gyro','Accel','SPI','I2C','2.5x3mm'],
-     buy:'https://www.digikey.com/en/products/detail/tdk-invensense/ICM-42688-P/10824934',
-     ds:'',img:'',notes:'6-осьовий IMU. 2.5x3x0.76mm. SPI або I2C.'},
-    {id:9,name:'AKM AK09918C Compass',part:'AK09918C',cat:'sensor',status:'ok',price:2.97,qty:1,
-     tags:['Compass','I2C','0.76x0.76mm'],
-     buy:'https://www.digikey.com/en/products/detail/asahi-kasei-microdevices-akm/AK09918C/7388307',
-     ds:'',img:'',notes:'Найменший компас AKM. 0.76x0.76x0.5mm. I2C.'},
-    {id:10,name:'Bosch BMP581 Barometer',part:'BMP581',cat:'sensor',status:'ok',price:3.07,qty:1,
-     tags:['Barometer','I2C','SPI','2x2mm'],
-     buy:'https://www.digikey.com/en/products/detail/bosch-sensortec/BMP581/16036134',
-     ds:'',img:'',notes:'2x2x0.75mm. ±0.06hPa відносна точність. I2C/SPI.'},
-    {id:11,name:'Vishay VCNL36825T Proximity',part:'VCNL36825T',cat:'sensor',status:'ok',price:1.48,qty:1,
-     tags:['Proximity','ALS','I2C','1.35x0.85mm'],
-     buy:'https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VCNL36825T/13877576',
-     ds:'',img:'',notes:'Proximity + ALS. Гасить екран при дзвінку. 1.35x0.85x0.6mm.'},
-    {id:12,name:'Tiny1-C Thermal Camera',part:'Tiny1-C 256x192',cat:'sensor',status:'info',price:110,qty:1,
-     tags:['Thermal','256x192','LWIR','12um'],
-     buy:'https://cnthermalcamera.en.made-in-china.com',
-     ds:'',img:'',notes:'256x192 @ 25Hz. LWIR 8-14um. Компактний, низьке споживання.'},
-    {id:13,name:'MAX77654 PMIC',part:'MAX77654',cat:'power',status:'info',price:0,qty:1,
-     tags:['PMIC','Buck-Boost','Li-Po','I2C'],
-     buy:'',ds:'',img:'',
-     notes:'SIMO архітектура — 3 рейки + зарядник з 1 індуктора. Вхід від Li-Po 3.7V. Додатково TPS62177 для 3.3V.'},
-    {id:14,name:'FUSB302 USB-C Controller',part:'FUSB302BMPX',cat:'power',status:'info',price:2,qty:1,
+     ds:'',img:'',notes:'Робоча RAM для ARM HPS — без неї Linux не підніметься. Той самий клас чіпа що в iWave SOM.'},
+    {id:6,name:'FT2232HQ — USB-JTAG/UART Bridge',part:'FT2232HQ-REEL',cat:'fpga',status:'ok',price:4.65,qty:1,
+     tags:['USB Bridge','JTAG+UART','56-VQFN'],
+     buy:'https://eu.mouser.com/ProductDetail/FTDI/FT2232HQ-REEL',
+     ds:'https://ftdichip.com/wp-content/uploads/2020/08/DS_FT2232H.pdf',
+     img:'',notes:'Канал A → JTAG (через level shifter), канал B → UART HPS консоль. Потребує власний 12MHz кварц + EEPROM для VID/PID.'},
+    {id:7,name:'SN74AXC4T774 — JTAG Level Shifter', part:'SN74AXC4T774BQBR', cat:'fpga', status:'info', price:1.3, qty:1,
+     tags:['Level Shift','3.3V→1.8V','Direction-Controlled','380Mbps'],
+     buy:'https://www.digikey.com/en/products/detail/texas-instruments/SN74AXC4T774BQBR/13568357',
+     ds:'https://www.ti.com/lit/ds/symlink/sn74axc4t774.pdf',
+     img:'',notes:'Офіційно рекомендований TI шифтер для JTAG. Переводить рівні FT2232HQ (3.3V) у VCCIO_SDM Agilex 5 (1.8V). Без нього є ризик пошкодити SDM-банк FPGA.'},
+    {id:8,name:'12MHz Crystal для FT2232HQ', part:'ABM3-12.000MHZ-D2Y-T', cat:'fpga', status:'info', price:0.35, qty:1,
+     tags:['12MHz','HC-49 SMD','+2×22pF caps'],
+     buy:'https://www.digikey.com', ds:'', img:'',
+     notes:'Без власного 12MHz кварцу FT2232HQ не підніме навіть USB enumeration. Обов\'язково з двома конденсаторами 18-22pF обв\'язки.'},
+    {id:9,name:'93LC46B EEPROM для FT2232HQ', part:'93LC46B-I/SN', cat:'fpga', status:'info', price:0.4, qty:1,
+     tags:['SOIC-8','VID/PID config'],
+     buy:'https://www.digikey.com', ds:'', img:'',
+     notes:'Без неї Quartus Programmer бачить плату як Generic FTDI device, а не USB-Blaster II. Прошивається через FT_PROG після монтажу.'},
+    {id:10,name:'TPS62130 — 3.3V Buck 3A', part:'TPS62130RGTR', cat:'power', status:'info', price:1.9, qty:1,
+     tags:['3.3V','3A','pin-to-pin TPS62177'],
+     buy:'https://www.digikey.com', ds:'', img:'',
+     notes:'Замінює занижений TPS62177 (500mA). FT2232H High-Speed + QSPI flash активність + LED легко з\'їдають 300-400mA разом — 3A дає запас.'},
+    {id:11,name:'32.768kHz Crystal для DA9062 RTC', part:'ABS07-32.768KHZ-T', cat:'power', status:'info', price:0.3, qty:1,
+     tags:['RTC clock','12.5pF'],
+     buy:'https://www.digikey.com', ds:'', img:'',
+     notes:'Без нього вбудований RTC-календар DA9062 не працюватиме навіть з підключеним CR2032.'},
+    {id:12,name:'USB-C Controller',part:'FUSB302BMPX',cat:'power',status:'ok',price:1.1,qty:1,
      tags:['USB-C','CC','I2C'],
-     buy:'',ds:'',img:'',
-     notes:'USB-C CC piни + базове PD. Достатньо для першої версії.'},
-    {id:15,name:'nano-SIM Holder Hirose',part:'DM3AT-SF-PEJM5',cat:'other',status:'ok',price:0.4,qty:1,
-     tags:['nano-SIM','8.73x11.5mm','push-push'],
-     buy:'https://www.lcsc.com',
-     ds:'',img:'',notes:'Найкомпактніший nano-SIM holder. Не розміщувати via під ним.'},
+     buy:'https://www.digikey.com/en/products/detail/onsemi/FUSB302BMPX/6138869',
+     ds:'',img:'',notes:'CC piни + базовий PD достатньо для першої версії плати без зарядки великих навантажень.'},
+    {id:13,name:'USB-C Connector (24-pin SMD)',part:'USB-3.1 Type-C Female 24P',cat:'power',status:'ok',price:1.16,qty:1,
+     tags:['24P','Top-Mount'],
+     buy:'https://rozetka.com.ua/ua/585554284/p585554284/',
+     ds:'',img:'',notes:'Фізичний роз\'єм для живлення і програмування. D+/D- пара — 90Ω диференційний імпеданс на трасах.'},
   ];
 }
-
 function defaultTimeline(){
   return [
     {id:1,date:'ВЕР 2024',head:'Вибір теми та архітектурне планування',body:'Обрано Intel Agilex 5E SoC. Визначено концепцію Nokia-форм-фактору з FPGA-серцем.',done:true},
@@ -1813,17 +1138,16 @@ function defaultTimeline(){
   ];
 }
 
-// ══════════ ROUTING ══════════
 function showPage(p){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(x=>x.classList.remove('active'));
   document.getElementById('nav-'+p).classList.add('active');
   if(p==='elements') renderElements();
+  if(p==='devkit') renderDevkit();
   window.scrollTo(0,0);
 }
 
-// ══════════ TIMELINE ══════════
 function renderTimeline(){
   const c = document.getElementById('timeline-container');
   if(!c) return;
@@ -1835,13 +1159,11 @@ function renderTimeline(){
       <div class="tl-body" contenteditable="true" onblur="updateTL(${item.id},'body',this.textContent)">${item.body}</div>
       <div style="margin-top:10px;display:flex;gap:12px;align-items:center;">
         <label style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--muted);cursor:pointer;">
-          <input type="checkbox" ${item.done?'checked':''} onchange="updateTL(${item.id},'done',this.checked);renderTimeline()" style="accent-color:var(--neon);">
-          Виконано
+          <input type="checkbox" ${item.done?'checked':''} onchange="updateTL(${item.id},'done',this.checked);renderTimeline()" style="accent-color:var(--neon);"> Виконано
         </label>
         <button onclick="deleteTL(${item.id})" style="font-family:var(--mono);font-size:10px;color:var(--red);background:none;border:none;cursor:pointer;">✕ видалити</button>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
   observeAnimations();
 }
 function updateTL(id,field,val){ const i=timeline.find(x=>x.id===id); if(i){i[field]=val;saveTL();} }
@@ -1853,7 +1175,6 @@ function addTimelineItem(){
   setTimeout(()=>document.getElementById('tl-'+id)?.scrollIntoView({behavior:'smooth',block:'center'}),100);
 }
 
-// ══════════ ELEMENTS ══════════
 function renderElements(){
   const q=document.getElementById('search-input')?.value.toLowerCase()||'';
   const cats=['fpga','memory','rf','display','power','sensor','other'];
@@ -1878,13 +1199,7 @@ function renderElements(){
     const items=grouped[cat];
     const sec=document.createElement('div');
     sec.className='category-section';
-    sec.innerHTML=`
-      <div class="category-header">
-        <span class="category-name">${CAT_NAMES[cat]||cat}</span>
-        <span class="category-count">${items.length}</span>
-      </div>
-      <div class="elements-grid">${items.map(elCard).join('')}</div>
-    `;
+    sec.innerHTML=`<div class="category-header"><span class="category-name">${CAT_NAMES[cat]||cat}</span><span class="category-count">${items.length}</span></div><div class="elements-grid">${items.map(elCard).join('')}</div>`;
     con.appendChild(sec);
   });
 }
@@ -1894,25 +1209,9 @@ function elCard(e){
   const img=e.img?`<img src="${e.img}" alt="">`:`<div class="no-img">📦</div>`;
   return `
   <div class="el-card" onclick="openEditModal(${e.id})">
-    <div class="el-card-top">
-      <div class="el-img">${img}</div>
-      <div class="el-info">
-        <div class="el-name">${e.name}</div>
-        <div class="el-part">${e.part||'—'}</div>
-        <div class="el-tags-row">${tags}</div>
-      </div>
-    </div>
-    <div class="el-card-mid">
-      <div>
-        <div class="el-price">$${((e.price||0)*(e.qty||1)).toFixed(2)}</div>
-        <div class="el-price-label">${(e.qty||1)>1?`${e.qty}×$${(e.price||0).toFixed(2)}`:''}</div>
-      </div>
-      <div class="el-status ${sm.cls}">${sm.label}</div>
-    </div>
-    <div class="el-card-bottom">
-      ${e.buy?`<a class="el-link" href="${e.buy}" target="_blank" onclick="event.stopPropagation()">↗ Купити</a>`:''}
-      ${e.ds?`<a class="el-link ds" href="${e.ds}" target="_blank" onclick="event.stopPropagation()">📄 Datasheet</a>`:''}
-    </div>
+    <div class="el-card-top"><div class="el-img">${img}</div><div class="el-info"><div class="el-name">${e.name}</div><div class="el-part">${e.part||'—'}</div><div class="el-tags-row">${tags}</div></div></div>
+    <div class="el-card-mid"><div><div class="el-price">$${((e.price||0)*(e.qty||1)).toFixed(2)}</div><div class="el-price-label">${(e.qty||1)>1?`${e.qty}×$${(e.price||0).toFixed(2)}`:''}</div></div><div class="el-status ${sm.cls}">${sm.label}</div></div>
+    <div class="el-card-bottom">${e.buy?`<a class="el-link" href="${e.buy}" target="_blank" onclick="event.stopPropagation()">↗ Купити</a>`:''}${e.ds?`<a class="el-link ds" href="${e.ds}" target="_blank" onclick="event.stopPropagation()">📄 Datasheet</a>`:''}</div>
     ${e.notes?`<div class="el-notes ${e.status==='warn'||e.status==='bad'?'has-issues':''}">💬 ${e.notes}</div>`:''}
   </div>`;
 }
@@ -1923,17 +1222,71 @@ function setFilter(f,el){
   el.classList.add('active');
   renderElements();
 }
-
-// ══════════ MODAL ══════════
 function openAddModal(){
+  document.getElementById('f-mode').value='elements';
   document.getElementById('modal-title').textContent='▸ ДОДАТИ КОМПОНЕНТ';
   document.getElementById('btn-delete').style.display='none';
   document.getElementById('f-edit-id').value='';
-  ['name','part','tags','buy','ds','img','notes'].forEach(f=>document.getElementById('f-'+f).value='');
+  ['name','part','tags','buy','ds','img','notes','spec'].forEach(f=>document.getElementById('f-'+f).value='');
   document.getElementById('f-price').value='0';
   document.getElementById('f-qty').value='1';
   document.getElementById('f-cat').value='other';
   document.getElementById('f-status').value='info';
+  document.getElementById('wrap-cat').style.display='';
+  document.getElementById('wrap-status').style.display='';
+  document.getElementById('wrap-qty').style.display='';
+  document.getElementById('wrap-tags').style.display='';
+  document.getElementById('wrap-img').style.display='';
+  document.getElementById('wrap-spec').style.display='none';
+  document.getElementById('wrap-dk-meta').style.display='none';
+  document.getElementById('lbl-notes').textContent='Нотатки / проблеми';
+  document.getElementById('modal').classList.add('open');
+}
+
+function openDkAddModal(groupId){
+  document.getElementById('f-mode').value='devkit';
+  document.getElementById('modal-title').textContent='▸ ДОДАТИ КОМПОНЕНТ У БЛОК';
+  document.getElementById('btn-delete').style.display='none';
+  document.getElementById('f-edit-id').value='';
+  ['name','part','tags','buy','ds','img','notes','spec'].forEach(f=>document.getElementById('f-'+f).value='');
+  document.getElementById('f-price').value='0';
+  document.getElementById('wrap-cat').style.display='none';
+  document.getElementById('wrap-status').style.display='none';
+  document.getElementById('wrap-qty').style.display='none';
+  document.getElementById('wrap-tags').style.display='none';
+  document.getElementById('wrap-img').style.display='none';
+  document.getElementById('wrap-spec').style.display='';
+  document.getElementById('wrap-dk-meta').style.display='';
+  document.getElementById('f-dk-group').value=String(groupId);
+  document.getElementById('f-dk-status').value='need';
+  document.getElementById('lbl-notes').textContent='Опис (чому потрібен)';
+  document.getElementById('modal').classList.add('open');
+}
+
+function openDkEditModal(groupId, index){
+  const c = DEVKIT_DATA.groups[groupId][index];
+  if(!c) return;
+  document.getElementById('f-mode').value='devkit';
+  document.getElementById('modal-title').textContent='▸ РЕДАГУВАТИ КОМПОНЕНТ';
+  document.getElementById('btn-delete').style.display='';
+  document.getElementById('f-edit-id').value=groupId+':'+index;
+  document.getElementById('f-name').value=c.name||'';
+  document.getElementById('f-part').value=c.part||'';
+  document.getElementById('f-price').value=c.price||0;
+  document.getElementById('f-spec').value=c.spec||'';
+  document.getElementById('f-buy').value=c.buy||'';
+  document.getElementById('f-ds').value=c.ds||'';
+  document.getElementById('f-notes').value=c.desc||'';
+  document.getElementById('wrap-cat').style.display='none';
+  document.getElementById('wrap-status').style.display='none';
+  document.getElementById('wrap-qty').style.display='none';
+  document.getElementById('wrap-tags').style.display='none';
+  document.getElementById('wrap-img').style.display='none';
+  document.getElementById('wrap-spec').style.display='';
+  document.getElementById('wrap-dk-meta').style.display='';
+  document.getElementById('f-dk-group').value=String(groupId);
+  document.getElementById('f-dk-status').value=c.status||'need';
+  document.getElementById('lbl-notes').textContent='Опис (чому потрібен)';
   document.getElementById('modal').classList.add('open');
 }
 function openEditModal(id){
@@ -1957,6 +1310,8 @@ function openEditModal(id){
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 function saveElement(){
+  const mode = document.getElementById('f-mode').value;
+  if(mode === 'devkit'){ saveDkComponent(); return; }
   const id=document.getElementById('f-edit-id').value;
   const data={
     name:document.getElementById('f-name').value.trim(),
@@ -1977,23 +1332,97 @@ function saveElement(){
   save();closeModal();renderElements();
   showToast(id?'Оновлено':'Додано','success');
 }
+
+function saveDkComponent(){
+  const editId = document.getElementById('f-edit-id').value;
+  const group = document.getElementById('f-dk-group').value;
+  const comp = {
+    name: document.getElementById('f-name').value.trim(),
+    part: document.getElementById('f-part').value.trim(),
+    status: document.getElementById('f-dk-status').value,
+    desc: document.getElementById('f-notes').value.trim(),
+    spec: document.getElementById('f-spec').value.trim(),
+    price: parseFloat(document.getElementById('f-price').value)||0,
+    buy: document.getElementById('f-buy').value.trim(),
+    ds: document.getElementById('f-ds').value.trim(),
+  };
+  if(!comp.name){showToast('Введіть назву','error');return;}
+  if(!DEVKIT_DATA.groups[group]) DEVKIT_DATA.groups[group]=[];
+
+  if(editId){
+    const [oldGroup, idx] = editId.split(':');
+    DEVKIT_DATA.groups[oldGroup].splice(parseInt(idx),1);
+    DEVKIT_DATA.groups[group].push(comp);
+  } else {
+    DEVKIT_DATA.groups[group].push(comp);
+  }
+  saveDevkit();
+  closeModal();
+  renderDevkit();
+  showToast(editId?'Оновлено':'Додано','success');
+}
+
 function deleteCurrentElement(){
+  const mode = document.getElementById('f-mode').value;
+  if(mode === 'devkit'){
+    const editId = document.getElementById('f-edit-id').value;
+    if(!editId || !confirm('Видалити компонент?')) return;
+    const [group, idx] = editId.split(':');
+    DEVKIT_DATA.groups[group].splice(parseInt(idx),1);
+    saveDevkit();
+    closeModal();
+    renderDevkit();
+    showToast('Видалено','info');
+    return;
+  }
   const id=parseInt(document.getElementById('f-edit-id').value);
   if(!id||!confirm('Видалити?')) return;
   elements=elements.filter(x=>x.id!==id);
   save();closeModal();renderElements();
   showToast('Видалено','info');
 }
-document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeModal();});
 
-// ══════════ EXPORT ══════════
+function saveDevkit(){
+  localStorage.setItem('diploma_devkit_v3', JSON.stringify(DEVKIT_DATA));
+}
+function loadDevkit(){
+  const saved = JSON.parse(localStorage.getItem('diploma_devkit_v3')||'null');
+  if(saved && saved.groups) DEVKIT_DATA.groups = saved.groups;
+}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeModal();});
+function exportDevkitJSON(){
+  loadDevkit();
+  const blob=new Blob([JSON.stringify({devkit: DEVKIT_DATA, exported:new Date().toISOString()},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='fpga_phone_devkit.json';a.click();
+  showToast('DevKit JSON скачано','success');
+}
+function importDevkitJSON(event){
+  const file=event.target.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      if(data.devkit && data.devkit.groups){
+        DEVKIT_DATA.groups = data.devkit.groups;
+        saveDevkit();
+        renderDevkit();
+        showToast('DevKit імпортовано','success');
+      } else {
+        showToast('Невірний формат JSON','error');
+      }
+    }catch(err){ showToast('Помилка читання JSON','error'); }
+  };
+  reader.readAsText(file);
+  event.target.value='';
+}
 function exportJSON(){
   const blob=new Blob([JSON.stringify({elements,timeline,exported:new Date().toISOString()},null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='fpga_phone_components.json';a.click();
   showToast('JSON експортовано','success');
 }
-
 function importJSON(event){
   const file=event.target.files[0];
   if(!file) return;
@@ -2007,50 +1436,196 @@ function importJSON(event){
       renderElements();
       if(typeof renderTimeline==='function') renderTimeline();
       showToast('JSON імпортовано','success');
-    }catch(err){
-      showToast('Помилка читання JSON','error');
-    }
+    }catch(err){ showToast('Помилка читання JSON','error'); }
   };
   reader.readAsText(file);
   event.target.value='';
 }
-
-// ══════════ TOAST ══════════
 function showToast(msg,type='info'){
   const t=document.getElementById('toast');
   t.textContent=msg;t.className='toast '+type;
   setTimeout(()=>t.classList.add('show'),10);
   setTimeout(()=>t.classList.remove('show'),2800);
 }
-
-// ══════════ ANIMATIONS ══════════
 function observeAnimations(){
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-  },{threshold:.1});
+  const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}); },{threshold:.1});
   document.querySelectorAll('.fade-up,.timeline-item').forEach(el=>obs.observe(el));
 }
 
-// ══════════ SCREEN ANIMATION ══════════
-const screenTexts = [
-  'FPGA PHONE\n──────────\nAGILEX 5E\n69K LE\n──────────\nNOKIA×KPI',
-  'AMOLED\n2.4" 311PPI\n──────────\n5G READY\nRG255C-GL\n──────────',
-  'IMX586\n48MP CAMERA\n──────────\nTHERMAL\n256×192\n──────────',
-  'VERILOG\nRTL DRIVERS\n──────────\nMIPI DSI\nMIPI CSI\n──────────',
-];
-let screenIdx=0;
-setInterval(()=>{
-  screenIdx=(screenIdx+1)%screenTexts.length;
-  const el=document.getElementById('screen-text');
-  if(el){
-    el.style.opacity='0';
-    setTimeout(()=>{el.textContent=screenTexts[screenIdx].replace(/\\n/g,'\n');el.style.opacity='1';},300);
+// ══════════ DEVKIT v3.0 — FULLY VERIFIED DATA ══════════
+const DEVKIT_DATA = {
+  groups: {
+    1: [
+      {name:"Intel Agilex 5E SoC FPGA", part:"A5EA007BB23BE6S", status:"have",
+       desc:"Головний чіп: ARM Cortex-A55 HPS + 69K LE програмована логіка. Пакет B32A, 32×32мм.",
+       spec:"Звірено: iWave/Critical Link обидва на B32A пакеті",
+       price:94, buy:"https://www.digikey.be/en/products/detail/altera/A5EA007BB23BE6S/28118578",
+       ds:"https://docs.altera.com/r/docs/762191/current/agilextm-5-fpgas-and-socs-device-overview/key-features-and-innovations-in-agilextm-5-fpgas-and-socs"},
+    ],
+    2: [
+      {name:"DA9062 PMIC + RTC", part:"DA9062-56AM1", status:"have",
+       desc:"4×Buck + 4×LDO + RTC. Periphery/IO живлення — Buck1+2 dual-phase → VCCRCORE 1.2V (НЕ справжній core).",
+       spec:"Підтверджено: той самий чіп в iWave SOM, I2C 0x58 (звір з ревізією 0x48)",
+       price:4.21, buy:"https://www.digikey.com/en/products/detail/renesas-electronics-corporation/DA9062-56AM1/18717046",
+       ds:"https://www.alldatasheet.com/datasheet-pdf/pdf/1588721/RENESAS/DA9062.html"},
+      {name:"TPS546D24A — SmartVID Core Regulator", part:"TPS546D24ARVFR", status:"need",
+       desc:"PMBus-сумісний buck для справжнього core (VCC/VCCP, 0.70-0.90V). SDM керує напругою напряму через PMBus команди — звичайний adjustable buck це не вміє.",
+       spec:"До 20A, PMBus/I2C, feedback резистори 1% точність",
+       price:6.5, buy:"https://www.digikey.com/en/products/detail/texas-instruments/TPS546D24ARVFR/5039745", ds:""},
+      {name:"TPS62130 — 3.3V Buck 3A (заміна TPS62177)", part:"TPS62130RGTR", status:"need",
+       desc:"Чистий стабільний 3.3V для USB-C логіки, JTAG level-shifter, clock-генератора, FT2232H. Замінює занижений 500mA варіант — pin-to-pin сумісний.",
+       spec:"3A, fixed output, запас струму для High-Speed USB + QSPI активність",
+       price:1.9, buy:"https://www.digikey.com", ds:""},
+      {name:"CR2032 Coin Cell Holder", part:"Keystone 3034TR", status:"need",
+       desc:"RTC backup напруга для VCCBAT піна DA9062. Без неї треба тримати пін на землі (втрата RTC при вимкненні).",
+       spec:"3V, SMD тримач",
+       price:0.6, buy:"https://www.digikey.com", ds:""},
+      {name:"32.768kHz Crystal для DA9062 RTC", part:"ABS07-32.768KHZ-T", status:"need",
+       desc:"Без цього кварцу вбудований RTC-календар DA9062 не цокатиме навіть з підключеним CR2032.",
+       spec:"12.5pF load capacitance, типовий для PMIC RTC",
+       price:0.3, buy:"https://www.digikey.com", ds:""},
+    ],
+    3: [
+      {name:"MT25QU128 — QSPI Config Flash", part:"MT25QU128ABA1EW7-0SIT", status:"have",
+       desc:"128Mbit QSPI flash для FSBL/бітстріму. SDM завжди читає звідси перший блок в Active Serial режимі.",
+       spec:"Той самий чіп що в Terasic DevKit",
+       price:7.83, buy:"https://www.digikey.com/en/products/detail/micron-technology-inc/MT25QU128ABA1EW7-0SIT/6595530", ds:""},
+      {name:"LPDDR4 1GB для HPS", part:"MT53E1G32D4NQ-046-WT-F-TR", status:"need",
+       desc:"Робоча RAM для ARM HPS — без неї Linux не підніметься. Окрема рейка від FPGA fabric RAM.",
+       spec:"BGA200, 0.5мм pitch, той клас чіпа що в iWave SOM",
+       price:13, buy:"https://www.digikey.com/en/products/detail/micron-technology-inc/MT53E1G32D4NQ-046-WT-F-TR/17628678", ds:""},
+      {name:"MicroSD Card Slot (push-push)", part:"Molex 503398-1892", status:"need",
+       desc:"Носій rootfs для Linux на HPS — найпростіший спосіб для першої версії, без BGA eMMC-чіпа.",
+       spec:"Підтверджено: і iWave SOM, і Critical Link Dev Kit використовують microSD для rootfs",
+       price:0.85, buy:"https://www.digikey.com", ds:""},
+    ],
+    4: [
+      {name:"HPS Oscillator 25MHz", part:"Abracon ASE-25.000MHZ-LC-T", status:"need",
+       desc:"ОБОВ'ЯЗКОВО заведений на виділений HPS IO pin — без нього ARM-ядро не прокинеться.",
+       spec:"Підтверджено iWave SOM datasheet. Звір точний pin під A5EA007BB23BE6S перед розводкою",
+       price:1.2, buy:"https://www.digikey.com", ds:"https://abracon.com/datasheets/ASE.pdf"},
+      {name:"12MHz Crystal для FT2232HQ", part:"ABM3-12.000MHZ-D2Y-T", status:"need",
+       desc:"FT2232HQ абсолютно не запуститься без власного тактування — ні USB enumeration, ні JTAG/UART не з'являться без нього.",
+       spec:"HC-49 SMD + 2×18-22pF конденсатори обв'язки",
+       price:0.35, buy:"https://www.digikey.com", ds:""},
+      {name:"LPDDR4 Clock Synthesizer (для другого кроку)", part:"Si5332A-B-GM", status:"need",
+       desc:"199.95MHz диференційний clock для LPDDR4 банків — підключаєш коли додаєш RAM, не критично для першого JTAG bitstream.",
+       spec:"Підтверджено: офіційний SOM використовує 199.95MHz LVDS саме для LPDDR4 reference clock",
+       price:5, buy:"https://www.digikey.com", ds:""},
+    ],
+    5: [
+      {name:"FT2232HQ — USB-JTAG/UART Bridge", part:"FT2232HQ-REEL", status:"have",
+       desc:"Один чіп — програмування FPGA через USB-C і одночасно UART-консоль для HPS. Сторона USB/JTAG-драйверів працює на 3.3V.",
+       spec:"Той самий принцип що в Critical Link MitySOM-A5E Dev Kit",
+       price:4.65, buy:"https://eu.mouser.com/ProductDetail/FTDI/FT2232HQ-REEL", ds:"https://ftdichip.com/wp-content/uploads/2020/08/DS_FT2232H.pdf"},
+      {name:"93LC46B EEPROM (VID/PID конфігурація)", part:"93LC46B-I/SN", status:"need",
+       desc:"Без неї Quartus Programmer бачить плату як 'Generic FTDI device'. Прошивкою VID/PID/дескрипторів через FT_PROG плата стає видимою як справжній USB-Blaster II.",
+       spec:"SOIC-8, мікросхема пам'яті для USB дескрипторів",
+       price:0.4, buy:"https://www.digikey.com", ds:""},
+      {name:"SN74AXC4T774 — JTAG Level Shifter 3.3V↔1.8V", part:"SN74AXC4T774BQBR", status:"need",
+       desc:"КРИТИЧНО: FT2232HQ працює на 3.3V, а SDM-банк конфігурації Agilex 5 (VCCIO_SDM) — 1.8V. Без цього шифтера пряме підключення може пошкодити SDM. Офіційно рекомендований TI чіп саме для JTAG-застосувань.",
+       spec:"4-bit, direction-controlled, push-pull, до 380Mbps, 0.65-3.6V діапазон",
+       price:1.3, buy:"https://www.digikey.com/en/products/detail/texas-instruments/SN74AXC4T774BQBR/13568357", ds:"https://www.ti.com/lit/ds/symlink/sn74axc4t774.pdf"},
+      {name:"Config Mode DIP Switch (3-pin)", part:"E-Switch EG1218", status:"need",
+       desc:"MSEL[2:0] вибір режиму завантаження (JTAG / AS Fast / AS Standard) — читається SDM лише при power-on.",
+       spec:"3-position SPDT",
+       price:0.4, buy:"https://www.digikey.com", ds:""},
+      {name:"JTAG Header 10-pin", part:"Sullins GRPB052MWCN-RC", status:"need",
+       desc:"Стандартний 10-pin для USB Blaster / FT2232H підключення до TCK/TMS/TDI/TDO (через level shifter).",
+       spec:"2.54мм pitch, стандарт Altera USB-Blaster II",
+       price:0.5, buy:"https://www.digikey.com", ds:""},
+      {name:"USB-C Controller", part:"FUSB302BMPX", status:"have",
+       desc:"CC piни + базовий PD для USB-C живлення/даних. Достатньо для першої версії плати.",
+       spec:"Critical Link Dev Kit обмежує до 1.5A @ 5V — той самий рівень достатній для мінімального devkit",
+       price:1.1, buy:"https://www.digikey.com/en/products/detail/onsemi/FUSB302BMPX/6138869", ds:""},
+      {name:"USB-C Connector (24-pin SMD)", part:"USB-3.1 Type-C Female 24P", status:"have",
+       desc:"Фізичний роз'єм для живлення і програмування.",
+       spec:"Закороти D+/D- пари для будь-якої орієнтації кабелю. D+/D- пара — 90Ω диференційний імпеданс",
+       price:1.16, buy:"https://rozetka.com.ua/ua/585554284/p585554284/", ds:""},
+    ],
+    6: [
+      {name:"LED CONFIG_DONE (зелений)", part:"Generic 0603 Green LED", status:"need",
+       desc:"Загорається коли FPGA bitstream залився і чіп в user mode — твій головний індикатор успіху.",
+       spec:"Підтверджено: і iWave SOM, і MitySOM-A5E мають аналогічні LED",
+       price:0.1, buy:"https://www.digikey.com", ds:""},
+      {name:"LED INIT_DONE (зелений)", part:"Generic 0603 Green LED", status:"need",
+       desc:"Підтверджує, що вся FPGA fabric у user mode.",
+       spec:"", price:0.1, buy:"https://www.digikey.com", ds:""},
+      {name:"LED Power/Status", part:"Generic 0603 Blue LED", status:"need",
+       desc:"Загальний health-індикатор — живлення піднялось і стабільне.",
+       spec:"", price:0.1, buy:"https://www.digikey.com", ds:""},
+      {name:"2× Test LED на GPIO", part:"Generic 0603 LED ×2", status:"need",
+       desc:"Hello World для FPGA fabric — перший Verilog проєкт блимає цими LED.",
+       spec:"", price:0.2, buy:"https://www.digikey.com", ds:""},
+      {name:"2× Tactile Button на GPIO", part:"Generic SMD Tactile Switch ×2", status:"need",
+       desc:"Кнопка → LED або лічильник — наочний доказ робочої fabric-логіки для захисту диплому.",
+       spec:"", price:0.3, buy:"https://www.digikey.com", ds:""},
+      {name:"Reset Button (nCONFIG)", part:"Generic SMD Tactile Switch", status:"need",
+       desc:"Ручний рестарт конфігурації FPGA без перепідключення живлення.",
+       spec:"", price:0.3, buy:"https://www.digikey.com", ds:""},
+    ],
+    7: [
+      {name:"Набір decoupling-конденсаторів", part:"100nF/1uF/10uF X7R bulk lot", status:"need",
+       desc:"Розв'язка по всіх VCC рейках чіпа і периферії — обов'язково для стабільного старту.",
+       spec:"", price:5, buy:"https://www.digikey.com", ds:""},
+      {name:"Резистори-підтяжки (10K/4.7K/1K)", part:"Generic 0402/0603 resistor lot", status:"need",
+       desc:"TCK pull-up до VCCIO_SDM, MSEL pull-up/down, nCONFIG/nSTATUS — стандартні підтяжки з datasheet.",
+       spec:"", price:2, buy:"https://www.digikey.com", ds:""},
+      {name:"Точні feedback-резистори (1%, low TCR)", part:"Vishay/Yageo 0402 1% lot", status:"need",
+       desc:"Для TPS546D24A та DA9062 в ланцюгах зворотного зв'язку — похибка в пару відсотків означає перегрів core (0.7-0.9V) через неточну напругу.",
+       spec:"1% або краще, низький температурний коефіцієнт",
+       price:1.5, buy:"https://www.digikey.com", ds:""},
+    ],
   }
-},3000);
+};
 
-// ══════════ INIT ══════════
+function dkComponentCard(c, groupId, index){
+  const flagCls = c.status==='have' ? 'flag-have' : 'flag-need';
+  const flagText = c.status==='have' ? '✓ Є В БАЗІ' : '+ ДОДАТИ';
+  const cardCls = c.status==='have' ? 'have' : 'need';
+  return `
+  <div class="dk-comp ${cardCls}" onclick="openDkEditModal(${groupId},${index})">
+    <button class="dk-comp-del" onclick="event.stopPropagation();quickDeleteDk(${groupId},${index})" title="Видалити">✕</button>
+    <div class="dk-comp-top"><div class="dk-comp-name">${c.name}</div><div class="dk-comp-flag ${flagCls}">${flagText}</div></div>
+    <div class="dk-comp-part">${c.part}</div>
+    <div class="dk-comp-desc">${c.desc}</div>
+    ${c.spec?`<div class="dk-comp-spec">▸ ${c.spec}</div>`:''}
+    <div class="dk-comp-foot"><div class="dk-comp-price">$${c.price.toFixed(2)}</div><div class="dk-comp-links">${c.buy?`<a href="${c.buy}" target="_blank" onclick="event.stopPropagation()">↗ Купити</a>`:''}${c.ds?`<a class="ds" href="${c.ds}" target="_blank" onclick="event.stopPropagation()">📄 DS</a>`:''}</div></div>
+  </div>`;
+}
+function quickDeleteDk(groupId, index){
+  if(!confirm('Видалити компонент?')) return;
+  DEVKIT_DATA.groups[groupId].splice(index,1);
+  saveDevkit();
+  renderDevkit();
+  showToast('Видалено','info');
+}
+function renderDevkit(){
+  loadDevkit();
+  let totalCost=0, haveCount=0, needCount=0;
+  for(const g in DEVKIT_DATA.groups){
+    const grid=document.getElementById('dk-grid-'+g);
+    if(!grid) continue;
+    grid.innerHTML = DEVKIT_DATA.groups[g].map((c,i)=>{
+      totalCost += c.price;
+      if(c.status==='have') haveCount++; else needCount++;
+      return dkComponentCard(c, g, i);
+    }).join('');
+  }
+  const totalBar=document.getElementById('dk-total-bar');
+  if(totalBar){
+    totalBar.innerHTML = `
+      <div class="dk-total-cell"><div class="dk-total-val" style="color:var(--neon);">$${totalCost.toFixed(0)}</div><div class="dk-total-key">Орієнтовна сума</div></div>
+      <div class="dk-total-cell"><div class="dk-total-val" style="color:var(--green);">${haveCount}</div><div class="dk-total-key">Вже в твоїй базі</div></div>
+      <div class="dk-total-cell"><div class="dk-total-val" style="color:var(--amber);">${needCount}</div><div class="dk-total-key">Треба додати</div></div>
+      <div class="dk-total-cell"><div class="dk-total-val" style="color:var(--neon3);">${haveCount+needCount}</div><div class="dk-total-key">Компонентів всього</div></div>
+    `;
+  }
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
-  loadFromGitHub(); 
+  loadDevkit();
+  loadFromGitHub();
   observeAnimations();
   document.getElementById('last-updated').textContent='ОНОВЛЕНО: '+new Date().toLocaleTimeString('uk').toUpperCase();
 });

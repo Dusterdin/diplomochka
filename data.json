@@ -721,35 +721,85 @@
       "part": "Rayson RS70BT7G4S09F",
       "cat": "memory",
       "status": "warn",
-      "price": 57.89,
+      "price": 17.29,
       "qty": 1,
       "tags": [
-        "BGA-153(11.5x13)"
+        "BGA",
+        "64GB"
       ],
-      "buy": "https://www.lcsc.com/product-detail/C53224317.html?spm=wm.fly.bg.28.xh___wm.mly.mlk.16-7-1.ml&lcsc_vid=RVAKAQVfQwBaAVZWFQULBQFeTgRbAwYAFgdcBVBWFlkxVlNeRVNXVVRSRFldXjsOAxUeFF5JWBYZEEoKFBINSQcJGk4eFQsCAgIaFA%3D%3D",
-      "ds": "",
-      "img": "https://www.lcsc.com/product-image/C53224317.html?whichImg=sch&spm=wm.sxq.inf.0.ltp___wm.fly.bg.28.xh&lcsc_vid=RVAKAQVfQwBaAVZWFQULBQFeTgRbAwYAFgdcBVBWFlkxVlNeRVNXVVRSRFldXjsOAxUeFF5JWBYZEEoKFBINSQcJGk4eFQsCAgIaFA%3D%3D",
-      "notes": "Невідома майже компанія",
+      "buy": "https://www.tist.hk/product/samsung/klmcg4jetd-b041",
+      "ds": "https://jlcpcb.com/partdetail/Samsung-KLMCG4JETDB041/C2915276",
+      "img": "https://www.tist.hk/themes/tist/images/chip-default.jpg",
+      "notes": "Ціна різна проте є даташит",
       "id": 1782295988506
     },
     {
       "name": "RAM пам'ять",
-      "part": "H9HCNNNFAMMLXR-NEE",
+      "part": "K4UBE3D4AA-MGCL",
       "cat": "memory",
       "status": "warn",
-      "price": 87.74,
+      "price": 21.34,
       "qty": 1,
       "tags": [
         "BGA",
-        "8GB",
+        "4GB",
         "LPDDR4",
         "SDRAM"
       ],
-      "buy": "https://jlcpcb.com/partdetail/SKHYNIX-H9HCNNNCPMMLXRNEE/C19192462",
+      "buy": "https://jlcpcb.com/partdetail/Samsung-K4UBE3D4AAMGCL/C2920257",
       "ds": "",
-      "img": "https://www.fusionww.com/_next/image?url=https%3A%2F%2Fimages.fusionww.com%2FProd%2FImages%2FProductCatalogImages%2F2280.png&w=640&q=75",
-      "notes": "Поки ще не отримав даташит на пам'ять",
+      "img": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtComponentImageFile/8585208052845064192-C2920257/C2920257-%E6%AD%A3%E9%9D%A2.jpg?x-oss-date=20260625T111308Z&x-oss-expires=1800&x-oss-security-token=CAIShQN1q6Ft5B2yfSjIr5rtf%2FvdgKlO3aDaTm32i2Q9du5NvKL9oDz2IHhMdHJsAOodtv0%2FmmhT6PkclqRLcbhpcmfjV%2BZHzLB8qdRzyxRG4J7b16cNrbH4M4b6aXeirie7AYjQSNfaZY3iCTTtnTNyxr3XbCirW0ffX7SClZ9gaKZwPGy%2FdiEUK9pKAQFgpcQGT12zU8ygKRn3mGHdIVN1sw5n8wNF5L%2B439eX52iE7gXzwfRHoJ%2FqcNr2LZtuOJw6S82y0Kltc7aGyytMwB9P7KBwgapY2DLOsdyzAl1cpFekS7OOq4UycVAiNvBjSvEY86jG%2BKcm6rCJpePe0A1QOOxZaSPbSb27zdHMcOHTbY5hJe2nYi6WionfaMGu7Vx6exQBPQZNYMEmLHthExElRiFUukYafacxCO3KaN9msMleufIdpz1jTW0ytslams2%2B0%2BceIJ0KTnoi0djfIQCOiVf%2BiuWhqqqm3ndcjEiSjdmnWE4l1%2BaoNVKLtpo85JWHuk9w5ch3ARqAAWtjybl3zCL4hYefxnt2Cm2M%2F2rT37TheP4SOPdaWHsbwTdX%2FXk7XfFRYrGU0qYVeiVandDDODslYmIZMBO87LoCgmPZKYfiF0ZWjr8Sa2F5U%2B3Gr8YZ6JvQp1BPg%2Ff2%2FOpiZOogIxK7BjA7JO%2FgL9e0RkTWbc22y7c%2FUHRBAFUjIAA%3D&x-oss-signature-version=OSS4-HMAC-SHA256&x-oss-credential=STS.NYX4Aimvojb1LKGodhzaaSgVB%2F20260625%2Feu-central-1%2Foss%2Faliyun_v4_request&x-oss-signature=dec38b4b646a82363c62de8951ef64ff68dd2face5879665f84e2020fc3a905c",
+      "notes": "Сайт JLCPCB",
       "id": 1782298416440
+    },
+    {
+      "name": "інший модуль Дзвінків",
+      "part": "EG800QEULC-N03-SNNSA",
+      "cat": "rf",
+      "status": "info",
+      "price": 29.58,
+      "qty": 1,
+      "tags": [],
+      "buy": "https://www.digikey.com/en/products/detail/quectel/EG916QGLLC-N03-SNNSA/22155959",
+      "ds": "",
+      "img": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/003/232/767/MFG_EG916Q-GL_sml%28200x200%29.jpg",
+      "notes": "Менший на чучуть та LTE Cat 1",
+      "id": 1782392999615
+    },
+    {
+      "name": "Пам'ять для Agilex як DevKit",
+      "part": "MT25QU128ABA",
+      "cat": "memory",
+      "status": "info",
+      "price": 7.83,
+      "qty": 1,
+      "tags": [
+        "QSPI",
+        "128Mbit"
+      ],
+      "buy": "https://www.digikey.com/en/products/detail/micron-technology-inc/MT25QU128ABA1EW7-0SIT/6595530",
+      "ds": "",
+      "img": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/003/210/414/557%7E8WPDFN-.80-6X5%7EW7%7E8_sml%28200x200%29.jpg",
+      "notes": "Така пам'ять використовується в Terasick DevKit",
+      "id": 1782592531946
+    },
+    {
+      "name": "Буфер для JTAG",
+      "part": "SN74AXC4T774BQBR",
+      "cat": "fpga",
+      "status": "info",
+      "price": 0.91,
+      "qty": 1,
+      "tags": [
+        "BGA",
+        "Швидкий",
+        "push-pull"
+      ],
+      "buy": "https://www.digikey.com/en/products/detail/texas-instruments/SN74AXC4T774BQBR/13627063",
+      "ds": "",
+      "img": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/200/097/084/296%7E4224640%7EBQB%7E16_sml.jpg",
+      "notes": "Треба для пінів JTAG",
+      "id": 1782753735751
     }
   ],
   "timeline": [
@@ -810,5 +860,5 @@
       "done": false
     }
   ],
-  "exported": "2026-06-25T07:39:26.308Z"
+  "exported": "2026-07-06T10:54:20.690Z"
 }
