@@ -95,6 +95,16 @@
           "price": 18.73,
           "buy": "https://www.digikey.com/en/products/detail/micron-technology-inc/MT25QU128ABA1EW7-0SIT/6595530",
           "ds": ""
+        },
+        {
+          "name": "Інша пам'ять QSPI",
+          "part": "Winbond W25Q128JWYIQ",
+          "status": "need",
+          "desc": "128Mbit, QSPI, заміна мікрон",
+          "spec": "https://www.digikey.com/en/products/detail/winbond-electronics/W25Q128JWYIQ-TR/12090759?s=N4IgTCBcDaIOoEsB2AjA9kgJgAjmArAIoCMYAHAFJwCaAkoSALoC%2BQA",
+          "price": 3.2,
+          "buy": "",
+          "ds": ""
         }
       ],
       "4": [
@@ -297,5 +307,5 @@
       ]
     }
   },
-  "exported": "2026-07-06T10:54:53.313Z"
+  "exported": "2026-07-07T16:52:41.297Z"
 }
